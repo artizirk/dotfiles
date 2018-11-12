@@ -1,0 +1,49 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+}
+
+order += "disk /"
+order += "ethernet br0"
+order += "ethernet wg-ilves"
+order += "wireless wlp6s0"
+order += "load"
+order += "tztime local"
+
+wireless wlp6s0 {
+        format_up = "W: (%quality at %essid) %ip"
+        format_down = "W: down"
+}
+
+ethernet br0 {
+        # if you use %speed, i3status requires root privileges
+        format_up = "br0: %ip"
+        format_down = "br0: down"
+}
+
+
+ethernet wg-ilves {
+        # if you use %speed, i3status requires root privileges
+        format_up = "wg-ilves: %ip"
+        format_down = "wg-ilves: down"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S"
+}
+
+load {
+        format = "%1min"
+}
+
+disk "/" {
+        format = "%avail"
+}
