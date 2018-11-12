@@ -2,6 +2,7 @@
 	name = Arti Zirk
 	email = arti.zirk@gmail.com
 [merge]
-	ff = true
+	tool = meld
+
 [alias]
 	plog = log --graph --pretty=format:'%h -%d %s %n' --abbrev-commit --date=relative --branches
