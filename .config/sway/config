@@ -18,7 +18,7 @@ set $term gnome-terminal
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 #set $menu dmenu_path | dmenu | xargs swaymsg exec
-set $menu gnome-terminal --title=launcher -- ~/.bin/desktop_launcher.sh
+set $menu gnome-terminal --title=swayapplauncher -- ~/.bin/desktop_launcher.sh
 
 ### Output configuration
 #
@@ -213,7 +213,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl --quiet set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --quiet set 5%-
 
 # launcher float
-for_window [title=".*launcher.*"] floating enable
+for_window [title=".*swayapplauncher.*"] floating enable
 
 # screenshots
 bindsym Print exec grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S_grim.png')
