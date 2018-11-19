@@ -23,7 +23,7 @@ set $menu gnome-terminal --title=launcher -- ~/.bin/desktop_launcher.sh
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/Pildid/background.png tile
 #
 # Example configuration:
 #
@@ -31,15 +31,21 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+# Notification daemon
+exec mako
+
 ### Idle configuration
 #
 # Example configuration:
 #
 exec swayidle \
-    timeout 300 'swaylock -c 000000' \
+    timeout 300 'swaylock -c 333333 -s tile -i ~/Pildid/background.png' \
     timeout 600 'swaymsg "output * dpms off"' \
        resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -c 000000'
+    before-sleep 'swaylock -c 333333 -s tile -i ~/Pildid/background.png'
+
+# Lock screen with scroll lock button
+bindsym Scroll_Lock exec swaylock -c 333333AA -s tile -i ~/Pildid/background.png
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 600 seconds, and turn your screens back on when
@@ -209,6 +215,10 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --quiet set 5%-
 # launcher float
 for_window [title=".*launcher.*"] floating enable
 
+# screenshots
+bindsym Print exec grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S_grim.png')
+bindsym Print+Shift exec slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S_grim.png')
+
 #
 # Status Bar:
 #
@@ -218,12 +228,12 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command i3status
+    status_command i3blocks
 
     colors {
         statusline #ffffff
         background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        inactive_workspace #32323200 #32323255 #808080
     }
 }
 
@@ -232,7 +242,7 @@ input * {
     xkb_variant us,
     xkb_options caps:escape
     tap enabled
-    natural_scroll enabled
+    natural_scroll disabled
 }
 
 
