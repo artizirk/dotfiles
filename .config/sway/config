@@ -32,7 +32,7 @@ output * bg ~/Pildid/background.png tile
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 # Notification daemon
-exec mako
+exec mako --default-timeout 10 --ignore-timeout
 
 ### Idle configuration
 #
