@@ -32,7 +32,7 @@ output * bg ~/Pildid/background.png tile
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 # Notification daemon
-exec mako --default-timeout 10
+exec mako --default-timeout 10000
 
 ### Idle configuration
 #
@@ -233,6 +233,7 @@ bindsym XF86AudioPrev exec playerctl previous
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
+    #swaybar_command /home/arti/code/sway_tray/build/swaybar/swaybar
     position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
