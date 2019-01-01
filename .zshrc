@@ -46,6 +46,9 @@ zstyle ':filter-select' extended-search yes
 EDITOR=nano
 VISUAL=nano
 
+# iostat colors
+export S_COLORS=auto
+
 source /usr/share/zsh/site-functions/git-flow-completion.zsh
 
 export PATH="/home/arti/.bin:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
@@ -70,4 +73,3 @@ function gedit {
     fi
     PATH=$REAL_PATH env -u VIRTUAL_ENV /usr/bin/gedit $@;
 }
-S_COLORS=auto
