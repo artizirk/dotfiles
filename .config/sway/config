@@ -31,6 +31,9 @@ output * bg ~/Pildid/background.png tile
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
+output "Dell Inc. DELL U2715H GH85D71K0W5S" pos 2560 0
+output "Dell Inc. DELL U2715H GH85D6CN1YYS" pos 0 0
+
 # Notification daemon
 exec mako --default-timeout 10000
 
