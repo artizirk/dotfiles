@@ -29,6 +29,7 @@ alias ipy="ipython"
 alias htop="htop -d 10"
 alias ip="ip -c"
 alias cp="cp --reflink=auto"
+alias cal="cal -w3"
 alias gitg="LANG=en_US.UTF-8 gitg"
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
