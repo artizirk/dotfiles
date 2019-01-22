@@ -6,3 +6,9 @@
 
 [alias]
 	plog = log --graph --pretty=format:'%h -%d %s %n' --abbrev-commit --date=relative --branches
+[web]
+	browser = firefox
+[browser "firefox"]
+	path = firefox-developer-edition
+[instaweb]
+	httpd = webrick
