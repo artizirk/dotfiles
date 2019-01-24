@@ -12,3 +12,12 @@
 	path = firefox-developer-edition
 [instaweb]
 	httpd = webrick
+[core]
+	editor = nano
+[credential]
+	helper = /usr/lib/git-core/git-credential-libsecret
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	smtpUser = arti.zirk@gmail.com
+	smtpServerPort = 587
