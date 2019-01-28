@@ -258,5 +258,10 @@ input * {
     natural_scroll disabled
 }
 
+input 1133:4123:Logitech_M705 {
+    pointer_accel -0.6
+    accel_profile adaptive
+}
+
 
 include /etc/sway/config.d/*
