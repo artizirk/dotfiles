@@ -14,6 +14,7 @@
 	httpd = webrick
 [core]
 	editor = nano
+	quotepath = false
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
 [sendemail]

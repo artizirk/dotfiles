@@ -263,5 +263,14 @@ input 1133:4123:Logitech_M705 {
     accel_profile adaptive
 }
 
+input 1267:32:Elan_Touchpad {
+    natural_scroll enabled
+    pointer_accel 0.1
+}
+
+input 1267:32:Elan_TrackPoint {
+    pointer_accel 0.3
+}
+
 
 include /etc/sway/config.d/*
