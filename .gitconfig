@@ -6,6 +6,7 @@
 
 [alias]
 	plog = log --graph --pretty=format:'%h -%d %s %n' --abbrev-commit --date=relative --branches
+	ls = "! for file in $(ls --group-directories-first -p); do git log -n 1 --pretty=\"format:${file}|%s|%ar%n\" -- $file; done | column -s'|' -t -T 2"
 [web]
 	browser = firefox
 [browser "firefox"]
@@ -22,3 +23,5 @@
 	smtpServer = smtp.gmail.com
 	smtpUser = arti.zirk@gmail.com
 	smtpServerPort = 587
+[diff]
+	wsErrorHighlight = all
