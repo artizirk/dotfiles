@@ -229,7 +229,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --quiet set 5%-
 
 # launcher float
 for_window [title=".*swayapplauncher.*"] floating enable
-for_window [title="Authy"] floating enable
+for_window [title="^Authy$"] floating enable
 
 # screenshots
 bindsym Print exec grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S_grim.png')
