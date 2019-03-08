@@ -1,0 +1,52 @@
+set realname="Arti Zirk"
+set from=arti.zirk@gmail.com
+set imap_user=arti.zirk@gmail.com
+# set imap_pass=PASSWORD
+source secrets
+set folder=imaps://imap.gmail.com/
+
+set spoolfile   = +INBOX
+#mailboxes       = +INBOX
+
+set imap_check_subscribed
+
+
+# Store message headers locally to speed things up.
+# If hcache is a folder, Mutt will create sub cache folders for each account which may speeds things up even more.
+set header_cache = ~/.cache/mutt/headers
+
+# Store messages locally to speed things up, like searching message bodies.
+# Can be the same folder as header_cache.
+# This will cost important disk usage according to your e-mail amount.
+set message_cachedir = "~/.cache/mutt"
+
+# Specify where to save and/or look for postponed messages.
+set postponed = +[Gmail]/Drafts
+
+# Allow Mutt to open a new IMAP connection automatically.
+unset imap_passive
+
+# Keep the IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+
+# How often to check for new mail (time in seconds).
+set mail_check = 120
+
+set sidebar_visible
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_divider_char = '█'
+set mail_check_stats
+set sidebar_short_path                  # Shorten mailbox names
+set sidebar_delim_chars="/"             # Delete everything up to the last / character
+set sidebar_folder_indent               # Indent folders whose names we've shortened
+set sidebar_indent_string="  "          # Indent with two spaces
+
+
+color progress white red
+
+
+set send_charset="us-ascii:utf-8"
+
+
+## COLORS 
+source colors
