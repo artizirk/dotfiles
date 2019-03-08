@@ -16,9 +16,11 @@ set $right l
 # Your preferred terminal emulator
 set $term gnome-terminal
 # Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
+# None: it's recommended that you pass the final command to sway
 #set $menu dmenu_path | dmenu | xargs swaymsg exec
 set $menu gnome-terminal --title=swayapplauncher -- ~/.bin/desktop_launcher.sh
+
+
 
 ### Output configuration
 #
@@ -58,6 +60,8 @@ bindsym Scroll_Lock exec swaylock -c 333333AA -s tile -i ~/Pildid/background.png
 # Dropbox
 exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 
+
+bindsym Alt+Tab exec gnome-terminal --title=swayapplauncher -- ~/.bin/sway-apps.py
 
 ### Input configuration
 #
@@ -225,6 +229,7 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --quiet set 5%-
 
 # launcher float
 for_window [title=".*swayapplauncher.*"] floating enable
+for_window [title="Authy"] floating enable
 
 # screenshots
 bindsym Print exec grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S_grim.png')
@@ -259,17 +264,17 @@ input * {
     xkb_layout ee,ee
     xkb_variant us,
     xkb_options caps:escape
+    xkb_numlock enabled
     tap enabled
-    natural_scroll disabled
 }
 
 input 1133:4123:Logitech_M705 {
     pointer_accel -0.6
+    natural_scroll disabled
     accel_profile adaptive
 }
 
 input 1267:32:Elan_Touchpad {
-    natural_scroll enabled
     pointer_accel 0.1
 }
 

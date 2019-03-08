@@ -74,3 +74,6 @@ function gedit {
     fi
     PATH=$REAL_PATH env -u VIRTUAL_ENV /usr/bin/gedit $@;
 }
+
+# i don't like that systemd by default uses a pager
+export SYSTEMD_PAGER=''
