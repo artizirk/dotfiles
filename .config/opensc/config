@@ -2,12 +2,19 @@ app default {
 	# debug = 3;
 	# debug_file = opensc-debug.txt;
 
+	# Lenovo USB Smartcard Keyboard pinpad implementation is broken
+	reader_driver pcsc {
+		enable_pinpad = false
+        }
+
+	# Only GnuPG uses Yubikey
 	ignored_readers = "Yubico YubiKey CCID 01 00"
 
 	framework pkcs15 {
 		# use_file_caching = true;
 	}
-	
+
+	# Force Yubikey to use openpgp applet
 	card_atr 3B:F8:13:00:00:81:31:FE:15:59:75:62:69:6B:65:79:34:D4 {
 		name = "Yubico Yubikey 4 OTP+CCID";
 		driver = "openpgp";
