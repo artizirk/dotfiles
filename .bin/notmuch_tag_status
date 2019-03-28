@@ -1,0 +1,6 @@
+#!/bin/bash
+# Show a table of tag and now many unread emails under that tag
+
+for tag in $(notmuch search --output=tags '*'); do
+	echo -ne "${tag} | $(notmuch count tag:${tag} and tag:unread) \n";
+done | column -s '|' -t
