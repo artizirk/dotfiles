@@ -14,7 +14,7 @@
 [instaweb]
 	httpd = webrick
 [core]
-	editor = nano
+	editor = nvim
 	quotepath = false
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret

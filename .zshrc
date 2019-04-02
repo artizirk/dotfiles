@@ -5,6 +5,8 @@ function virtual_env_prompt () {
 }
 grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
 zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
+# Disable right side sad smiley, works nicer with resized terminal
+zstyle ':prompt:grml:right:setup' use-rprompt false
 
 
 source /etc/profile.d/vte.sh
@@ -44,8 +46,8 @@ zstyle ':filter-select:highlight' matched fg=green
 zstyle ':filter-select' max-lines 3
 zstyle ':filter-select' extended-search yes
 
-EDITOR=nano
-VISUAL=nano
+EDITOR=nvim
+VISUAL=nvim
 
 # iostat colors
 export S_COLORS=auto

@@ -22,7 +22,7 @@
             "email": "arti.zirk@gmail.com",
             "gpgkey": "",
             "always_gpg_sign": "false",
-            "sendmail": "",
+            "sendmail": "msmtp -a arti.zirk@gmail.com --read-envelope-from -i -t",
             "default": "true",
             "save_sent": "true",
             "save_sent_to": "\/home\/arti\/Mail\/sent\/cur\/",
