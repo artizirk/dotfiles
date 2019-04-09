@@ -112,6 +112,7 @@ min_width=CPU: 100.00%
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
 [mediaplayer]
+command=~/.config/i3blocks/$BLOCK_NAME
 #instance=spoti
 interval=5
 signal=10
