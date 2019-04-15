@@ -132,6 +132,20 @@ font pango:DejaVu Sans Mono 10, xos4 Terminus Regular 12
 #
 # Workspaces:
 #
+    # split workspaces accross two displays
+    workspace 1 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
+    workspace 3 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
+    workspace 5 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
+    workspace 7 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
+    workspace 9 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
+
+
+    workspace 2 output "Dell Inc. DELL U2715H GH85D71K0W5S"
+    workspace 4 output "Dell Inc. DELL U2715H GH85D71K0W5S"
+    workspace 6 output "Dell Inc. DELL U2715H GH85D71K0W5S"
+    workspace 8 output "Dell Inc. DELL U2715H GH85D71K0W5S"
+    workspace 0 output "Dell Inc. DELL U2715H GH85D71K0W5S"
+
     # switch to workspace
     bindsym $mod+1 workspace 1
     bindsym $mod+2 workspace 2

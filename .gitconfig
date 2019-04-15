@@ -25,3 +25,5 @@
 	smtpServerPort = 587
 [diff]
 	wsErrorHighlight = all
+[cola]
+	spellcheck = false
