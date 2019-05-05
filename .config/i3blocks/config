@@ -34,6 +34,7 @@ markup=none
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
+command=/usr/lib/i3blocks/$BLOCK_NAME 1%
 #label=VOL
 label=♪
 instance=Master
