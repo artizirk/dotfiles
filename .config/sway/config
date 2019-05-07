@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term gnome-terminal
+set $term alacritty
 # Your preferred application launcher
 # None: it's recommended that you pass the final command to sway
 #set $menu dmenu_path | dmenu | xargs swaymsg exec
@@ -60,8 +60,7 @@ bindsym Scroll_Lock exec swaylock -c 333333AA -s tile -i ~/Pildid/background.png
 # Dropbox
 exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 
-
-bindsym Alt+Tab exec gnome-terminal --title=swayapplauncher -- ~/.bin/sway-apps.py
+#bindsym Alt+Tab exec gnome-terminal --title=swayapplauncher -- ~/.bin/sway-apps.py
 
 ### Input configuration
 #
