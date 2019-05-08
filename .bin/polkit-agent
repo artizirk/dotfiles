@@ -1,0 +1,3 @@
+#!/bin/sh
+
+WAYLAND_DISPLAY='' /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
