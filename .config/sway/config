@@ -39,6 +39,10 @@ output "Dell Inc. DELL U2715H GH85D6CN1YYS" pos 0 0
 # Notification daemon
 exec mako --default-timeout 10000
 
+# Polkit agent
+exec ~/.bin/polkit-agent
+
+
 ### Idle configuration
 #
 # Example configuration:
