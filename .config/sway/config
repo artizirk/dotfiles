@@ -147,7 +147,7 @@ font pango:DejaVu Sans Mono 10, xos4 Terminus Regular 12
     workspace 4 output "Dell Inc. DELL U2715H GH85D71K0W5S"
     workspace 6 output "Dell Inc. DELL U2715H GH85D71K0W5S"
     workspace 8 output "Dell Inc. DELL U2715H GH85D71K0W5S"
-    workspace 0 output "Dell Inc. DELL U2715H GH85D71K0W5S"
+    workspace 10 output "Dell Inc. DELL U2715H GH85D71K0W5S"
 
     # switch to workspace
     bindsym $mod+1 workspace 1
