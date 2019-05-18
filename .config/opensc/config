@@ -8,7 +8,7 @@ app default {
         }
 
 	# Only GnuPG uses Yubikey
-	ignored_readers = "Yubico YubiKey CCID 01 00"
+	ignored_readers = "Yubico YubiKey"
 
 	framework pkcs15 {
 		# use_file_caching = true;
