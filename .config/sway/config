@@ -293,6 +293,7 @@ input 1133:4123:Logitech_M705 {
 
 input 1267:32:Elan_Touchpad {
     pointer_accel 0.1
+    natural_scroll enabled
 }
 
 input 1267:32:Elan_TrackPoint {
