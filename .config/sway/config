@@ -80,8 +80,8 @@ exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-
-font pango:DejaVu Sans Mono 10, xos4 Terminus Regular 12
+font pango:xos4 Terminus 12
+for_window [title=".*"] title_format ▪️ %title ▪️
 
 ### Key bindings
 #
