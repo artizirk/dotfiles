@@ -81,7 +81,7 @@ exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 # Read `man 5 sway-input` for more information about this section.
 
 font pango:xos4 Terminus 12
-for_window [title=".*"] title_format ▪️ %title ▪️
+for_window [title=".*"] title_format ▪️ %title
 
 ### Key bindings
 #
