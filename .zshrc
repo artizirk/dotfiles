@@ -79,3 +79,6 @@ function gedit {
 
 # i don't like that systemd by default uses a pager
 export SYSTEMD_PAGER=''
+
+# set man max width
+export MANWIDTH=80
