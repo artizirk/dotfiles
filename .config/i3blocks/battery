@@ -1,0 +1,50 @@
+#!/bin/bash
+#cd "/sys/class/power_supply/$BLOCK_INSTANCE/"
+
+status=$(busctl get-property org.freedesktop.UPower /org/freedesktop/UPower/devices/DisplayDevice org.freedesktop.UPower.Device State | cut -d' ' -f2)
+charge_f=$(busctl get-property org.freedesktop.UPower /org/freedesktop/UPower/devices/DisplayDevice org.freedesktop.UPower.Device Percentage | cut -d' ' -f2)
+
+echo -ne "$charge_f %"
+
+#if [[ "$charge_f" -lt 20 ]]; then
+#    printf '\uf244'
+#elif [[ "$charge_f" -lt 40 ]]; then
+#    printf '\uf243'
+#elif [[ "$charge_f" -lt 60 ]]; then
+#    printf '\uf242'
+#elif [[ "$charge_f" -lt 80 ]]; then
+#    printf '\uf241'
+#else
+#    printf '\uf240'
+#fi
+
+#printf '  '
+
+#if [[ "$status" == '1' ]]; then
+#    printf '\uf106'
+#elif [[ "$status" == '2' ]]; then
+#    printf '\uf107'
+#elif [[ "$status" == '4' ]]; then
+#    printf '\uf0e7'
+#else
+#    printf '[%s]' "$status"
+#fi
+
+#printf '  '
+
+#if [[ "$status" != '4' ]]; then
+#    rate_raw=$(($(cat voltage_now) * $(cat current_now)))
+#    rate=$(bc <<< "scale=1; $rate_raw / 10^12")
+#    printf '%s\u2009W, ' "$rate"
+#fi
+
+#charge_d=$((100 * $(cat charge_now) / $(cat charge_full_design)))
+#printf '%s\u2009%%\n' "$charge_d"
+
+#if [[ "$status" == 'Discharging' ]]; then
+#    if [[ "$charge_d" -lt 10 ]]; then
+#        printf '\n#E41C28'
+#    elif [[ "$charge_d" -lt 20 ]]; then
+#        printf '\n#EEBF13'
+#    fi
+#fi

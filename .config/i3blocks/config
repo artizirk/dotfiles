@@ -101,11 +101,12 @@ min_width=CPU: 100.00%
 # Battery indicator
 #
 # The battery instance defaults to 0.
-#[battery]
+[battery]
+command=~/.config/i3blocks/battery
 #label=BAT
-#label=⚡
+label=⚡
 #instance=1
-#interval=30
+interval=30
 
 
 # Generic media player support
