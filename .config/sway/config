@@ -36,6 +36,10 @@ output * bg ~/Pildid/background.png tile
 output "Dell Inc. DELL U2715H GH85D71K0W5S" pos 2560 0
 output "Dell Inc. DELL U2715H GH85D6CN1YYS" pos 0 0
 
+set $laptop "Unknown 0x0791 0x00000000"
+bindswitch lid:on output $laptop disable
+bindswitch lid:off output $laptop enable
+
 # Notification daemon
 exec mako --default-timeout 10000
 
@@ -89,6 +93,7 @@ for_window [title=".*"] title_format ▪️ %title
 #
     # start a terminal
     bindsym $mod+Return exec $term
+    #bindsym Print+Return exec $term
 
     # kill focused window
     bindsym $mod+Shift+q kill
