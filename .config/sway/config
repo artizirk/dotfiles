@@ -68,6 +68,9 @@ bindsym Scroll_Lock exec swaylock -c 333333AA -s tile -i ~/Pildid/background.png
 # Dropbox
 exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 
+# load xresources
+exec xrdb -load ~/.Xresources
+
 #bindsym Alt+Tab exec gnome-terminal --title=swayapplauncher -- ~/.bin/sway-apps.py
 
 ### Input configuration
