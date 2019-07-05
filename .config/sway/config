@@ -13,32 +13,36 @@ set $left h
 set $down j
 set $up k
 set $right l
+
+# Default font
+set $font "xos4 Terminus 12"
+font pango:xos4 Terminus 12
+# Background image
+set $bg "~/Pildid/background.png"
+
 # Your preferred terminal emulator
 set $term gnome-terminal
 # Your preferred application launcher
 # None: it's recommended that you pass the final command to sway
-#set $menu dmenu_path | dmenu | xargs swaymsg exec
-#set $menu gnome-terminal --title=swayapplauncher -- ~/.bin/desktop_launcher.sh
-set $menu rofi -modi drun -show drun -show-icons -normal-window -font "xos4 Terminus 12"
+set $menu rofi -modi drun -show drun -show-icons -normal-window -font $font
 
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
-output * bg ~/Pildid/background.png tile
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
+output * bg $bg tile
 
+# Work monitors
 output "Dell Inc. DELL U2715H GH85D71K0W5S" pos 2560 0
 output "Dell Inc. DELL U2715H GH85D6CN1YYS" pos 0 0
 
+# Disable T480s laptop internal screen on lid close
 set $laptop "Unknown 0x0791 0x00000000"
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
+
+# load xresources
+exec xrdb -load ~/.Xresources
 
 # Notification daemon
 exec mako --default-timeout 10000
@@ -46,48 +50,25 @@ exec mako --default-timeout 10000
 # Polkit agent
 exec ~/.bin/polkit-agent
 
-
-### Idle configuration
-#
-# Example configuration:
-#
-exec swayidle \
-    timeout 300 'swaylock -c 333333 -s tile -i ~/Pildid/background.png' \
-    timeout 600 'swaymsg "output * dpms off"' \
-       resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -c 333333 -s tile -i ~/Pildid/background.png'
-
-# Lock screen with scroll lock button
-bindsym Scroll_Lock exec swaylock -c 333333AA -s tile -i ~/Pildid/background.png
-
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 600 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-
 # Dropbox
 exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 
-# load xresources
-exec xrdb -load ~/.Xresources
 
+### Idle configuration
+exec swayidle \
+    timeout 300 'swaylock -c 333333 -s tile -i $bg' \
+    timeout 600 'swaymsg "output * dpms off"' \
+       resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -c 333333 -s tile -i $bg'
+
+# Lock screen with scroll lock button
+bindsym Scroll_Lock exec swaylock -c 333333AA -s tile -i $bg
+
+# Alt+Tab window switcher
 bindsym Alt+Tab exec ~/.bin/switch_window.py
 
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
-font pango:xos4 Terminus 12
+# Hack that adds a emoji to all window titles so that title height is somewhat constant
+# You can read mode about this here https://github.com/swaywm/sway/issues/3114
 for_window [title=".*"] title_format ▪️ %title
 
 ### Key bindings
@@ -252,15 +233,17 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl --quiet set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --quiet set 5%-
 
-# launcher float
-for_window [title=".*swayapplauncher.*"] floating enable
+# Authy 2FA window
 for_window [title="^Authy$"] floating enable
+# EstEID
 for_window [class="chrome-token-signing"] floating enable
+# Launcher
 for_window [class="Rofi"] floating enable
 
 # screenshots
-bindsym Print exec grim $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S_grim.png')
-bindsym Print+Shift exec slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%Y-%m-%d-%H%M%S_grim.png')
+bindsym Print exec ~/.bin/wscreenshot.py
+bindsym Print+Shift exec ~/.bin/wscreenshot.py --region
+bindsym Print+Alt exec ~/.bin/wscreenshot.py --window
 
 # media keys
 bindsym XF86AudioPlay exec playerctl play
@@ -273,7 +256,6 @@ bindsym XF86AudioPrev exec playerctl previous
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    #swaybar_command /home/arti/code/sway_tray/build/swaybar/swaybar
     position top
 
     # When the status_command prints a new line to stdout, swaybar updates.
@@ -287,6 +269,8 @@ bar {
     }
 }
 
+# Use US keyboard with Estonian letters
+# map Caps Lock to Esc key
 input * {
     xkb_layout ee,ee
     xkb_variant us,
@@ -295,12 +279,14 @@ input * {
     tap enabled
 }
 
+# Work mouse
 input 1133:4123:Logitech_M705 {
     pointer_accel -0.5
     natural_scroll disabled
     accel_profile adaptive
 }
 
+# T480s laptop
 input 1267:32:Elan_Touchpad {
     pointer_accel 0.1
     natural_scroll enabled
