@@ -71,7 +71,7 @@ exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 # load xresources
 exec xrdb -load ~/.Xresources
 
-#bindsym Alt+Tab exec gnome-terminal --title=swayapplauncher -- ~/.bin/sway-apps.py
+bindsym Alt+Tab exec ~/.bin/switch_window.py
 
 ### Input configuration
 #
