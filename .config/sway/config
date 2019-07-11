@@ -20,6 +20,14 @@ font pango:xos4 Terminus 12
 # Background image
 set $bg "~/Pildid/background.png"
 
+# Uses forked swaylock https://github.com/mortie/swaylock-effects
+set $lockcmd swaylock --clock --datestr "%Y-%m-%d" --indicator \
+    --image ~/Pildid/background.png --tiling \
+    --hide-keyboard-layout --font 'xos4 Terminus' --font-size 28 \
+    --text-color ffffff \
+    --inside-color 435366 --separator-color 435366 --ring-color 435366 \
+    --line-uses-ring
+
 # Your preferred terminal emulator
 set $term gnome-terminal
 # Your preferred application launcher
@@ -56,13 +64,15 @@ exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 
 ### Idle configuration
 exec swayidle \
-    timeout 300 'swaylock -c 333333 -s tile -i $bg' \
+    timeout 300 '$lockcmd' \
     timeout 600 'swaymsg "output * dpms off"' \
        resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -c 333333 -s tile -i $bg'
+    before-sleep '$lockcmd' \
+    lock '$lockcmd' \
+    unlock 'pkill -9 swaylock'
 
 # Lock screen with scroll lock button
-bindsym Scroll_Lock exec swaylock -c 333333AA -s tile -i $bg
+bindsym Scroll_Lock exec $lockcmd
 
 # Alt+Tab window switcher
 bindsym Alt+Tab exec ~/.bin/switch_window.py
