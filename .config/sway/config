@@ -21,12 +21,7 @@ font pango:xos4 Terminus 12
 set $bg "~/Pildid/background.png"
 
 # Uses forked swaylock https://github.com/mortie/swaylock-effects
-set $lockcmd swaylock --clock --datestr "%Y-%m-%d" --indicator \
-    --image ~/Pildid/background.png --tiling \
-    --hide-keyboard-layout --font 'xos4 Terminus' --font-size 28 \
-    --text-color ffffff \
-    --inside-color 435366 --separator-color 435366 --ring-color 435366 \
-    --line-uses-ring
+set $lockcmd swaylock --clock --datestr "%Y-%m-%d" --indicator --image $bg --tiling --hide-keyboard-layout --font "xos4 Terminus" --font-size 28 --text-color ffffff --inside-color 435366 --separator-color 435366 --ring-color 435366 --line-uses-ring
 
 # Your preferred terminal emulator
 set $term gnome-terminal
@@ -61,6 +56,8 @@ exec ~/.bin/polkit-agent
 # Dropbox
 exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 
+# React to smart card events
+exec card_eventmgr config_file=.config/pam_pkcs11/card_eventmgr.conf
 
 ### Idle configuration
 exec swayidle \
