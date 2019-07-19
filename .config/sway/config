@@ -56,6 +56,9 @@ exec ~/.bin/polkit-agent
 # Dropbox
 exec ~/code/dropbox-filesystem-fix/dropbox_start.py
 
+# fix env variables for xdg-desktop-portal
+exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+
 # React to smart card events
 exec card_eventmgr config_file=.config/pam_pkcs11/card_eventmgr.conf
 
