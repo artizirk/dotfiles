@@ -1,0 +1,8 @@
+#!/bin/sh
+
+NVIM=$(which nvim)
+if [ -n "${NVIM} ] && [ -x "${NVIM} ]; then
+	exec ${NVIM} "$@"
+else
+	exec vim "$@"
+fi
