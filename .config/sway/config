@@ -15,13 +15,14 @@ set $up k
 set $right l
 
 # Default font
-set $font "Terminus (TTF) Medium 12"
-font pango:Terminus (TTF) Medium 12
+# terminus-font-otb
+set $font "Terminus 12"
+font pango:Terminus 12
 # Background image
 set $bg "~/Pildid/background.png"
 
 # Uses forked swaylock https://github.com/mortie/swaylock-effects
-set $lockcmd swaylock --clock --datestr "%Y-%m-%d" --indicator --image $bg --tiling --hide-keyboard-layout --font "Terminus (TTF) Medium" --font-size 28 --text-color ffffff --inside-color 435366 --separator-color 435366 --ring-color 435366 --line-uses-ring
+set $lockcmd swaylock --clock --datestr "%Y-%m-%d" --indicator --image $bg --tiling --hide-keyboard-layout --font "Terminus" --font-size 28 --text-color ffffff --inside-color 435366 --separator-color 435366 --ring-color 435366 --line-uses-ring
 
 # Your preferred terminal emulator
 set $term gnome-terminal
