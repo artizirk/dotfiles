@@ -250,6 +250,8 @@ for_window [title="^Authy$"] floating enable
 for_window [class="chrome-token-signing"] floating enable
 # Launcher
 for_window [class="Rofi"] floating enable
+# Firefox about window
+for_window [instance="Browser" window_role="About"] floating enable
 
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py
