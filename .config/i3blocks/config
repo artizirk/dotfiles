@@ -24,7 +24,7 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=/usr/lib/i3blocks/$BLOCK_NAME
+command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
@@ -34,7 +34,7 @@ markup=none
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
-command=/usr/lib/i3blocks/$BLOCK_NAME 1%
+command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME 1%
 #label=VOL
 label=♪
 instance=Master
