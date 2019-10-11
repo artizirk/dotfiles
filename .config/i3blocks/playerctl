@@ -1,0 +1,39 @@
+#!/bin/bash
+# Based on https://aur.archlinux.org/packages/playerctl/
+
+INSTANCE="${BLOCK_INSTANCE}"
+
+if [[ "${INSTANCE}" != "" ]]; then
+  ARGUMENTS="--player ${INSTANCE}"
+fi
+
+ICON_PLAY="➤"
+ICON_PAUSE="Ⅱ"
+ICON_STOP="[]"
+CUR_ICON=""
+
+if [[ "${BLOCK_BUTTON}" -eq 1 ]]; then
+    $(playerctl ${ARGUMENTS} previous 2>/dev/null)
+elif [[ "${BLOCK_BUTTON}" -eq 2 ]]; then
+    $(playerctl ${ARGUMENTS} play-pause 2>/dev/null)
+elif [[ "${BLOCK_BUTTON}" -eq 3 ]]; then
+    $(playerctl ${ARGUMENTS} next 2>/dev/null)
+fi
+
+PLAYER_STATUS=$(playerctl ${ARGUMENTS} status 2>/dev/null)
+INFO_TITLE=$(playerctl ${ARGUMENTS} metadata title 2>/dev/null)
+INFO_ALBUM=$(playerctl ${ARGUMENTS} metadata album 2>/dev/null)
+INFO_ARTIST=$(playerctl ${ARGUMENTS} metadata artist 2>/dev/null)
+
+if [[ "${PLAYER_STATUS}" = "Paused" ]]; then
+  CUR_ICON="${ICON_PAUSE}"
+elif [[ "${PLAYER_STATUS}" = "Playing" ]]; then
+  CUR_ICON="${ICON_PLAY}"
+else
+  CUR_ICON="${ICON_STOP}"
+fi
+
+if [[ "${INFO_TITLE}" != "" ]] && [[ "${INFO_ARTIST}" != "" ]]; then
+  echo "${INFO_ARTIST} - ${INFO_TITLE} ${CUR_ICON}"
+  echo "${INFO_ARTIST} - ${INFO_TITLE} ${CUR_ICON}"
+fi
