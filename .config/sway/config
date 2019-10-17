@@ -76,7 +76,7 @@ exec swayidle \
     unlock 'pkill -9 swaylock'
 
 # Start autotiling script
-exec autotiling
+#exec autotiling
 
 # Lock screen with scroll lock button
 bindsym Scroll_Lock exec $lockcmd
