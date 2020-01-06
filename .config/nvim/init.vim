@@ -19,3 +19,6 @@ let g:deoplete#enable_at_startup = 1
 
 " Allow saving of files as sudo when I forgot to start vim using sudo.
 cmap w!! w !sudo tee > /dev/null %
+
+" F5 to save and make
+:map <f5> :w \| :make<CR>
