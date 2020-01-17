@@ -299,7 +299,7 @@ bar {
 input * {
     xkb_layout ee,ee
     xkb_variant us,
-    xkb_options caps:escape
+    xkb_options caps:escape,grp:win_space_toggle
     xkb_numlock enabled
     tap enabled
 }
@@ -320,6 +320,11 @@ input 1267:32:Elan_Touchpad {
 input 1267:32:Elan_TrackPoint {
     pointer_accel 0.3
 }
+
+for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
+for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 px
 
 
 include /etc/sway/config.d/*
