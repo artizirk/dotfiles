@@ -4,7 +4,7 @@
 status=$(busctl get-property org.freedesktop.UPower /org/freedesktop/UPower/devices/DisplayDevice org.freedesktop.UPower.Device State | cut -d' ' -f2)
 charge_f=$(busctl get-property org.freedesktop.UPower /org/freedesktop/UPower/devices/DisplayDevice org.freedesktop.UPower.Device Percentage | cut -d' ' -f2)
 
-echo -ne "$charge_f %"
+echo -e "$charge_f %"
 
 #if [[ "$charge_f" -lt 20 ]]; then
 #    printf '\uf244'
