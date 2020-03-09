@@ -299,7 +299,8 @@ bar {
 input * {
     xkb_layout ee,ee
     xkb_variant us,
-    xkb_options caps:escape,grp:win_space_toggle
+#    xkb_options caps:escape,grp:win_space_toggle
+    xkb_options caps:escape
     xkb_numlock enabled
     tap enabled
 }

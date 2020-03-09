@@ -28,3 +28,5 @@
 	algorithm = patience
 [cola]
 	spellcheck = false
+[push]
+	followTags = true
