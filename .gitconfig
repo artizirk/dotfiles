@@ -30,3 +30,5 @@
 	spellcheck = false
 [push]
 	followTags = true
+[gui]
+	spellingdictionary = en
