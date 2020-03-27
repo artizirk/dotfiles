@@ -265,6 +265,15 @@ for_window [class="Rofi"] floating enable
 # Firefox about window
 for_window [instance="Browser" window_role="About"] floating enable
 
+# JetBrains
+# Fix rendering of jetbrains splash screen and other floating windows
+for_window [class="jetbrains-*"  title="win*"] {
+    border none
+    floating enable
+    move position center
+#    move up 300px
+}
+
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py
 bindsym Print+Shift exec ~/.bin/wscreenshot.py --region
