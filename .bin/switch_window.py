@@ -42,6 +42,6 @@ for output in tree['nodes']:
 windows_string = '\n'.join([f"<{app_id}> {app_name} --- {app_title}" for app_id, app_name, app_title in windows])
 
 # Call rofi and move focus to the selected window
-selection = subprocess.check_output(['rofi', '-dmenu', '-i', '-p', 'window', '-normal-window', '-font', 'Terminus (TTF) Medium 12'], input=windows_string, universal_newlines=True)
+selection = subprocess.check_output(['rofi', '-dmenu', '-i', '-p', 'window', '-normal-window'], input=windows_string, universal_newlines=True)
 window_id = selection.split(' ')[0][1:-1]
 subprocess.call(['swaymsg', f"[con_id=\"{window_id}\"]", 'focus'])
