@@ -41,9 +41,9 @@ output "Dell Inc. DELL U2715H GH85D71K0W5S" pos 2560 0
 output "Dell Inc. DELL U2715H GH85D6CN1YYS" pos 0 0
 
 # Disable T480s laptop internal screen on lid close
-set $laptop "Unknown 0x0791 0x00000000"
-bindswitch lid:on output $laptop disable
-bindswitch lid:off output $laptop enable
+#set $laptop "Unknown 0x0791 0x00000000"
+#bindswitch lid:on output $laptop disable
+#bindswitch lid:off output $laptop enable
 
 # load xresources
 exec xrdb -load ~/.Xresources
