@@ -82,3 +82,6 @@ export SYSTEMD_PAGER=''
 
 # set man max width
 export MANWIDTH=80
+
+# make npm gyp faster
+export JOBS=8
