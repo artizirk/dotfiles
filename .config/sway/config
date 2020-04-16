@@ -54,7 +54,7 @@ exec mako --default-timeout 10000
 exec tvolnoti -n  -T dark
 
 # Monitor volume changes
-exec pactl subscribe | grep --line-buffered "sink" | xargs -n1 sh -c 'tvolnoti-show $(amixer get Master | grep -Po "[0-9]+(?=%)" | tail -1)'
+exec ~/.bin/volume_subscribe.sh
 
 # Register a fake player in bluez so that volume control would work
 exec ~/.bin/fakebluezplayer.py
