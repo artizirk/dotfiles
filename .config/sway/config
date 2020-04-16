@@ -21,7 +21,7 @@ font pango:Terminus 12
 set $bg "~/Pildid/background.png"
 
 # Lock screen
-set $lockcmd ~/.bin/swaylock.sh
+set $lockcmd ~/.bin/swaylock.sh $bg
 
 # Your preferred terminal emulator
 set $term gnome-terminal
@@ -50,8 +50,14 @@ exec xrdb -load ~/.Xresources
 # Notification daemon
 exec mako --default-timeout 10000
 
-# Simple bar
-exec rm /tmp/wobpipe; mkfifo /tmp/wobpipe && tail -f /tmp/wobpipe | wob
+# Volume and Brightness notification
+exec tvolnoti -n  -T dark
+
+# Monitor volume changes
+exec pactl subscribe | grep --line-buffered "sink" | xargs -n1 sh -c 'tvolnoti-show $(amixer get Master | grep -Po "[0-9]+(?=%)" | tail -1)'
+
+# Register a fake player in bluez so that volume control would work
+exec ~/.bin/fakebluezplayer.py
 
 # Polkit agent
 exec ~/.bin/polkit-agent
