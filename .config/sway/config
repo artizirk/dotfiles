@@ -258,8 +258,8 @@ bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer set Master 5%-
 
 #brightness control
-bindsym XF86MonBrightnessUp exec brightnessctl -m set +5% | cut -d',' -f4 | cut -d'%' -f1 > /tmp/wobpipe
-bindsym XF86MonBrightnessDown exec brightnessctl -m set 5%- | cut -d',' -f4 | cut -d'%' -f1 > /tmp/wobpipe
+bindsym XF86MonBrightnessUp exec brightnessctl -m set +5% | cut -d',' -f4 | cut -d'%' -f1 | xargs -n1 tvolnoti-show -s ~/.config/tvolnoti/themes/dark/display_brightness.svg
+bindsym XF86MonBrightnessDown exec brightnessctl -m set 5%- | cut -d',' -f4 | cut -d'%' -f1 | xargs -n1 tvolnoti-show -s ~/.config/tvolnoti/themes/dark/display_brightness.svg
 
 # Authy 2FA window
 for_window [title="^Authy$"] floating enable
