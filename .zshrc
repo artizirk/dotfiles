@@ -57,7 +57,24 @@ hash -d milrem=~/code/milrem  # shorten dir name in prompt
 
 # Enable or disable python virtual env
 function chpwd_auto_python_venv() {
-    return 0
+    local venv_dir
+    local cur_dir="${PWD}"
+    while [[ "${cur_dir}" != / ]]; do
+        if [[ -f "${cur_dir}/venv/bin/activate" ]]; then
+            venv_dir="${cur_dir}/venv"
+            break
+        fi
+        # :P does `realpath(3)`
+        # :h removes 1 trailing pathname component
+        cur_dir="${cur_dir:P:h}"
+    done
+    if [[ -z "${VIRTUAL_ENV}" ]] && [[ -n "${venv_dir}" ]]; then
+        # we found venv dir that is not yet activated
+        source "${venv_dir}"/bin/activate
+    elif [[ -z "${venv_dir}" ]] && [[ -n "${VIRTUAL_ENV}" ]]; then
+        # we have activated virtual env but we cant find venv folder anymore
+        deactivate
+    fi
 }
 chpwd_functions+=(chpwd_auto_python_venv)
 
