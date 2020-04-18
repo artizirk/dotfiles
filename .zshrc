@@ -8,13 +8,14 @@ grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
 function config_env_prompt () {
     REPLY=${CONFIG_ENV+(${CONFIG_ENV:t}) }
 }
-grml_theme_add_token config-env -f config_env_prompt '%F{magenta}' '%f'
+grml_theme_add_token config-env -f config_env_prompt
 
 zstyle ':prompt:grml:left:setup' items rc config-env virtual-env change-root user at host path vcs percent
 
 # Disable right side sad smiley, works nicer with resized terminal
 zstyle ':prompt:grml:right:setup' use-rprompt false
 
+# Git based dotfiles setup start
 function _config_activate {
     export GIT_DIR=$HOME/.cfg/
     export GIT_WORK_TREE=$HOME
@@ -37,6 +38,28 @@ function config {
         _config_deactivate
     fi
 }
+# git based dotfiles setup end
+
+# GRML profiles
+zstyle ':chpwd:profiles:/home/arti/code/milrem(|/|/*)' profile milrem
+function chpwd_profile_milrem() {
+    [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
+
+    export GIT_AUTHOR_EMAIL="arti.zirk@milrem.com"
+    export GIT_COMMITER_EMAIL="arti.zirk@milrem.com"
+}
+function chpwd_leave_profile_milrem() {
+    unset GIT_AUTHOR_EMAIL GIT_COMMITER_EMAIL
+}
+chpwd_profiles
+
+hash -d milrem=~/code/milrem  # shorten dir name in prompt
+
+# Enable or disable python virtual env
+function chpwd_auto_python_venv() {
+    return 0
+}
+chpwd_functions+=(chpwd_auto_python_venv)
 
 if [[ -f /etc/profile.d/vte.sh ]]; then
     source /etc/profile.d/vte.sh
@@ -64,7 +87,6 @@ alias ip="ip -color=auto"
 alias cp="cp --reflink=auto"
 alias cal="cal -w3"
 alias gitg="LANG=en_US.UTF-8 gitg"
-#alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 if [[ -f /usr/share/zaw/zaw.zsh ]]; then
     source /usr/share/zaw/zaw.zsh
