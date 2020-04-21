@@ -29,5 +29,5 @@ cmap w!! w !sudo tee > /dev/null %
 
 " show special chars
 set list
-set listchars=trail:·,nbsp:⎵
+set listchars=tab:\ \ ,trail:·,nbsp:⎵
 " TODO: toggle between listchars to show tabs and new lines
