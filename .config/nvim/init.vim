@@ -26,3 +26,8 @@ cmap w!! w !sudo tee > /dev/null %
 
 " F5 to save and make
 :map <f5> :w \| :make<CR>
+
+" show special chars
+set list
+set listchars=trail:·,nbsp:⎵
+" TODO: toggle between listchars to show tabs and new lines
