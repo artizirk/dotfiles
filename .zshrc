@@ -91,6 +91,8 @@ function new-scratch {
   echo "New scratch dir ready for grinding ;>"
 }
 
+histsearch() { fc -lim "*$@*" 1 }
+
 alias pacman="sudo pacman"
 alias py="python"
 alias py2="python2"
