@@ -122,6 +122,8 @@ fi
 
 EDITOR=nvim
 VISUAL=nvim
+MAILCHECK=0
+MAIL=~/Mail
 
 # iostat colors
 export S_COLORS=auto
