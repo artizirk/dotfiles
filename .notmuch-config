@@ -52,7 +52,7 @@ other_email=arti.zirk@milrem.com;
 
 [new]
 #tags=unread;inbox;
-tags=new;
+tags=;
 ignore=*.json;.mbsyncstate;.uidvalidity;
 
 # Search configuration

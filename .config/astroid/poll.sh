@@ -1,3 +1,3 @@
 #!/bin/bash
-cd ~/Mail
+cd ~/Mail/arti.zirk.gmail
 gmi sync
