@@ -31,3 +31,7 @@ cmap w!! w !sudo tee > /dev/null %
 set list
 set listchars=tab:\ \ ,trail:·,nbsp:⎵
 " TODO: toggle between listchars to show tabs and new lines
+
+" spellcheck
+set spelllang=en
+" enable via set spell
