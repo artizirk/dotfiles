@@ -321,7 +321,7 @@ input * {
 
 # Work mouse
 input 1133:4123:Logitech_M705 {
-    pointer_accel -0.5
+    pointer_accel -0.6
     natural_scroll disabled
     accel_profile adaptive
 }
