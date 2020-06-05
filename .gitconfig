@@ -32,3 +32,5 @@
 	followTags = true
 [gui]
 	spellingdictionary = en
+[pull]
+	ff = only
