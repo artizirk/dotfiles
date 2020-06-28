@@ -84,7 +84,7 @@ COMMITTERS=$(git --no-pager log --format="%ce" $BASE_HASH...$HEAD_HASH | uniq)
 
 # Check the test cases for spaces after ">"
 set +e
-git --no-pager diff $BASE_HASH..$HEAD_HASH t | grep "\+.*> .*"
+git --no-pager diff $BASE_HASH..$HEAD_HASH | grep "\+.*> .*"
 GREP_RETURN_CODE=$?
 set -e
 if  [ $GREP_RETURN_CODE -eq 0 ]; then
@@ -115,8 +115,8 @@ BASE_REF=$(git tag --points-at $BASE_HASH)
 test $BASE_REF || BASE_REF=$(git branch -a --contains $BASE_HASH | grep $UPSTREAM_REMOTE | sed 's/.*\///' | head -n1)
 read -r -d '\0' URLS <<EOM
 Base Ref: $BASE_REF
-Web-Diff: https://github.com/artizirk/git/commit/${HEAD_HASH:0:10}
-Checkout: git fetch https://github.com/artizirk/git $TAG_NAME && git checkout ${HEAD_HASH:0:10}
+Web-Diff: https://github.com/artizirk/wireguard-tools/commit/${HEAD_HASH:0:10}
+Checkout: git fetch https://github.com/artizirk/wireguard-tools/ $TAG_NAME && git checkout ${HEAD_HASH:0:10}
 
 \0
 EOM
