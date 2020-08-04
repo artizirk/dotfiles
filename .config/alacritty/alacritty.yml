@@ -85,7 +85,7 @@ scrolling:
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
-  #multiplier: 3
+  multiplier: 13
 
 # Font configuration
 font:
@@ -98,7 +98,7 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: monospace
-    family: xos4 Terminus
+    family: Terminus (TTF)
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
