@@ -3,7 +3,7 @@ set scrolloff=3
 set ignorecase
 
 " Python formating
-set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+autocmd FileType python set tabstop=4 shiftwidth=4 softtabstop=4 expandtab
 
 set cursorline
 hi cursorline cterm=none term=none
