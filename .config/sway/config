@@ -272,8 +272,8 @@ for_window [class="Rofi"] floating enable
 for_window [instance="Browser" window_role="About"] floating enable
 
 # JetBrains
-# Fix rendering of jetbrains splash screen and other floating windows
-for_window [class="jetbrains-*"  title="win*"] {
+# Fix rendering of jetbrains splash screen
+for_window [class="jetbrains-*" title="win0"] {
     border none
     floating enable
     move position center
