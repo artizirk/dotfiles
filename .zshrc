@@ -107,17 +107,9 @@ alias cp="cp --reflink=auto"
 alias cal="cal -w3"
 alias gitg="LANG=en_US.UTF-8 gitg"
 
-if [[ -f /usr/share/zaw/zaw.zsh ]]; then
-    source /usr/share/zaw/zaw.zsh
-
-    bindkey '^R' zaw-history
-    bindkey -M filterselect '^R' down-line-or-history
-    bindkey -M filterselect '^S' up-line-or-history
-    bindkey -M filterselect '^E' accept-search
-
-    zstyle ':filter-select:highlight' matched fg=green
-    zstyle ':filter-select' max-lines 3
-    zstyle ':filter-select' extended-search yes
+if [[ -f /usr/share/fzf/key-bindings.zsh && -f /usr/share/fzf/completion.zsh ]]; then
+    source /usr/share/fzf/key-bindings.zsh
+    source /usr/share/fzf/completion.zsh
 fi
 
 EDITOR=nvim
