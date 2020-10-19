@@ -46,7 +46,7 @@ function chpwd_profile_milrem() {
     [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
 
     export GIT_AUTHOR_EMAIL="arti.zirk@milrem.com"
-    export GIT_COMMITER_EMAIL="arti.zirk@milrem.com"
+    export GIT_COMMITTER_EMAIL="arti.zirk@milrem.com"
 }
 function chpwd_leave_profile_milrem() {
     unset GIT_AUTHOR_EMAIL GIT_COMMITER_EMAIL
