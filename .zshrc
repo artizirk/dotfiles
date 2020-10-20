@@ -110,6 +110,8 @@ alias gitg="LANG=en_US.UTF-8 gitg"
 if [[ -f /usr/share/fzf/key-bindings.zsh && -f /usr/share/fzf/completion.zsh ]]; then
     source /usr/share/fzf/key-bindings.zsh
     source /usr/share/fzf/completion.zsh
+    # default is 40%, and that is too much, limit to less lines
+    FZF_TMUX_HEIGHT=6
 fi
 
 EDITOR=nvim
