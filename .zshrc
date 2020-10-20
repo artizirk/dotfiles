@@ -112,6 +112,8 @@ if [[ -f /usr/share/fzf/key-bindings.zsh && -f /usr/share/fzf/completion.zsh ]];
     source /usr/share/fzf/completion.zsh
     # default is 40%, and that is too much, limit to less lines
     FZF_TMUX_HEIGHT=6
+    # other shortcuts already use reverse, except history search for some reason..
+    FZF_CTRL_R_OPTS="--reverse"
 fi
 
 EDITOR=nvim
