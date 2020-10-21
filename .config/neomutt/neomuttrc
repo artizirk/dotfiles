@@ -10,6 +10,8 @@ set spoolfile   = +INBOX
 
 set imap_check_subscribed
 
+# NotMuch config
+set nm_default_url = "notmuch:///home/arti/Mail"
 
 # Store message headers locally to speed things up.
 # If hcache is a folder, Mutt will create sub cache folders for each account which may speeds things up even more.

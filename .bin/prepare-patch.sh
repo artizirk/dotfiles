@@ -149,18 +149,18 @@ PATCH_DIR=$PATCH_TEMP_DIR/$TOPIC_NAME
 rm -rf $PATCH_DIR
 mkdir -p $PATCH_DIR
 
-git format-patch $FORMAT_PATCH_FLAGS $BASE_HASH --output-directory $PATCH_DIR/
+git format-patch --rfc $FORMAT_PATCH_FLAGS $BASE_HASH --output-directory $PATCH_DIR/
 
 if [ $COMMIT_COUNT -ne "1" ]
 then
     COVER_LETTER="$PATCH_DIR/v$PATCH_VERSION-0000-cover-letter.patch"
-    split -p 'BLURB HERE' "$COVER_LETTER"
-    cat xaa > $COVER_LETTER
-    rm xaa
+    csplit "$COVER_LETTER" '/BLURB HERE/'
+    cat xx00 > $COVER_LETTER
+    rm xx00
     printf "$URLS\n" >> $COVER_LETTER
     ! [ -e "$INTERDIFF" ] || cat "$INTERDIFF" >> $COVER_LETTER
-    tail -n +2 xab >> $COVER_LETTER
-    rm xab
+    tail -n +2 xx01 >> $COVER_LETTER
+    rm xx01
 fi
 
 ! [ -e "$INTERDIFF" ] || rm "$INTERDIFF"
@@ -223,8 +223,8 @@ REVIEWERS=$(
 
 
 ########################################################################
-$(git config core.editor) $PATCH_DIR &
+$(git config core.editor) $PATCH_DIR
 
 echo ""
 echo "Send patch with:"
-echo "git push origin $TAG_NAME && git send-email $PATCH_DIR/* --to=git@vger.kernel.org $REVIEWERS --in-reply-to="
+echo "git push origin $TAG_NAME && git send-email $PATCH_DIR/* --to=wireguard@lists.zx2c4.com $REVIEWERS --in-reply-to="
