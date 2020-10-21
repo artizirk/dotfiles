@@ -128,7 +128,7 @@ if [[ -f /usr/share/zsh/site-functions/git-flow-completion.zsh ]];then
     source /usr/share/zsh/site-functions/git-flow-completion.zsh
 fi
 
-export PATH="/home/arti/.bin:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+export PATH="/home/arti/.bin:/home/arti/.local/bin:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
 
 HISTSIZE=100000
