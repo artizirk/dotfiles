@@ -114,6 +114,32 @@ if [[ -f /usr/share/fzf/key-bindings.zsh && -f /usr/share/fzf/completion.zsh ]];
     FZF_TMUX_HEIGHT=6
     # other shortcuts already use reverse, except history search for some reason..
     FZF_CTRL_R_OPTS="--reverse"
+
+    # Copied form key-bindings.zsh
+    # CTRL-R - Paste the selected command from history into the command line
+    fzf-history-widget() {
+      local selected num
+      setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+      selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\**\s+(.*)/, $1)}++' |
+        FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort --expect=ctrl-e $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+      local ret=$?
+      if [ -n "$selected" ]; then
+        local accept=0
+        if [[ $selected[1] == ctrl-e ]]; then
+          accept=1
+          shift selected
+        fi
+        num=$selected[1]
+        if [ -n "$num" ]; then
+          zle vi-fetch-history -n $num
+          [[ $accept = 0 ]] && zle accept-line
+        fi
+      fi
+      zle reset-prompt
+      return $ret
+    }
+    zle     -N   fzf-history-widget
+    bindkey '^R' fzf-history-widget
 fi
 
 EDITOR=nvim
