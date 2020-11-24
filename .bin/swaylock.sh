@@ -5,7 +5,7 @@ exec swaylock \
 	--clock \
 	--datestr "%Y-%m-%d" \
 	--indicator \
-	--tiling \
+	--scaling tile \
 	--hide-keyboard-layout \
 	--font "Terminus" \
 	--font-size 28 \
