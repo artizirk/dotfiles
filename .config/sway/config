@@ -39,6 +39,10 @@ output * bg $bg tile
 # Work monitors
 output "Dell Inc. DELL U2715H GH85D71K0W5S" pos 2560 0
 output "Dell Inc. DELL U2715H GH85D6CN1YYS" pos 0 0
+#
+# Then the virtual DPI matches with the Philips 242S1 screen
+output "Goldstar Company Ltd LG HDR 4K 0x0000BBF6" scale 1.5
+output "Goldstar Company Ltd LG Ultra HD 0x0000B5BA" scale 1.5
 
 # Disable T480s laptop internal screen on lid close
 #set $laptop "Unknown 0x0791 0x00000000"
