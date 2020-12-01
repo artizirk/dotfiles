@@ -41,19 +41,19 @@ function config {
 # git based dotfiles setup end
 
 # GRML profiles
-zstyle ':chpwd:profiles:/home/arti/code/milrem(|/|/*)' profile milrem
-function chpwd_profile_milrem() {
+zstyle ':chpwd:profiles:/home/arti/code/krakul(|/|/*)' profile krakul
+function chpwd_profile_krakul() {
     [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
 
-    export GIT_AUTHOR_EMAIL="arti.zirk@milrem.com"
-    export GIT_COMMITTER_EMAIL="arti.zirk@milrem.com"
+    export GIT_AUTHOR_EMAIL="arti@krakul.eu"
+    export GIT_COMMITTER_EMAIL="arti@krakul.eu"
 }
-function chpwd_leave_profile_milrem() {
+function chpwd_leave_profile_krakul() {
     unset GIT_AUTHOR_EMAIL GIT_COMMITER_EMAIL
 }
 chpwd_profiles
 
-hash -d milrem=~/code/milrem  # shorten dir name in prompt
+hash -d krakul=~/code/krakul  # shorten dir name in prompt
 
 # Enable or disable python virtual env
 function chpwd_auto_python_venv() {
