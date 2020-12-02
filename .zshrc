@@ -1,4 +1,8 @@
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+# so that i can autoload -Uz local functions
+fpath=( ~/.config/zsh/functions $fpath)
+
 # Virtualenv support
 function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
@@ -190,3 +194,11 @@ export JOBS=8
 function vless {
     /usr/share/nvim/runtime/macros/less.sh $@
 }
+
+
+# Paste handling
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+autoload -Uz bracketed-paste-url-magic
+zle -N bracketed-paste bracketed-paste-url-magic
