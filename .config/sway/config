@@ -346,7 +346,9 @@ input 1267:32:Elan_TrackPoint {
 for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
 for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
 no_focus [title="Microsoft Teams Notification"]
+no_focus [title="Slack | mini panel"]
 for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 px
+for_window [title="Slack | mini panel"] move absolute position 2570 px 10 px
 
 
 include /etc/sway/config.d/*
