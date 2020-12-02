@@ -36,13 +36,16 @@ set $menu rofi -modi drun -show drun -show-icons -normal-window
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
 output * bg $bg tile
 
+set $left_disp "Goldstar Company Ltd LG HDR 4K 0x0000BBF6"
+set $right_disp "Goldstar Company Ltd LG Ultra HD 0x0000B5BA"
+
 # Work monitors
-output "Dell Inc. DELL U2715H GH85D71K0W5S" pos 2560 0
-output "Dell Inc. DELL U2715H GH85D6CN1YYS" pos 0 0
+output $left_disp pos 0 0
+output $right_disp pos 2560 0
 #
-# Then the virtual DPI matches with the Philips 242S1 screen
-output "Goldstar Company Ltd LG HDR 4K 0x0000BBF6" scale 1.5
-output "Goldstar Company Ltd LG Ultra HD 0x0000B5BA" scale 1.5
+# 4K resolution on 27" is way too small by default
+output $left_disp scale 1.5
+output $right_disp scale 1.5
 
 # Disable T480s laptop internal screen on lid close
 #set $laptop "Unknown 0x0791 0x00000000"
@@ -158,18 +161,17 @@ for_window [title=".*"] title_format ▪️ %title
 # Workspaces:
 #
     # split workspaces accross two displays
-    workspace 1 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
-    workspace 3 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
-    workspace 5 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
-    workspace 7 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
-    workspace 9 output "Dell Inc. DELL U2715H GH85D6CN1YYS"
+    workspace 1 output $left_disp
+    workspace 3 output $left_disp
+    workspace 5 output $left_disp
+    workspace 7 output $left_disp
+    workspace 9 output $left_disp
 
-
-    workspace 2 output "Dell Inc. DELL U2715H GH85D71K0W5S"
-    workspace 4 output "Dell Inc. DELL U2715H GH85D71K0W5S"
-    workspace 6 output "Dell Inc. DELL U2715H GH85D71K0W5S"
-    workspace 8 output "Dell Inc. DELL U2715H GH85D71K0W5S"
-    workspace 10 output "Dell Inc. DELL U2715H GH85D71K0W5S"
+    workspace 2 output $right_disp
+    workspace 4 output $right_disp
+    workspace 6 output $right_disp
+    workspace 8 output $right_disp
+    workspace 10 output $right_disp
 
     # switch to workspace
     bindsym $mod+1 workspace 1
