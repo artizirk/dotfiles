@@ -158,7 +158,7 @@ if [[ -f /usr/share/zsh/site-functions/git-flow-completion.zsh ]];then
     source /usr/share/zsh/site-functions/git-flow-completion.zsh
 fi
 
-export PATH="/home/arti/.bin:/home/arti/.local/bin:$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+export PATH="/home/arti/.bin:/home/arti/.local/bin:$(ruby -e 'print Gem.user_dir')/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
 
 
 HISTSIZE=100000
@@ -195,10 +195,11 @@ function vless {
     /usr/share/nvim/runtime/macros/less.sh $@
 }
 
-
 # Paste handling
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 
 autoload -Uz bracketed-paste-url-magic
 zle -N bracketed-paste bracketed-paste-url-magic
+
+setopt pushdminus
