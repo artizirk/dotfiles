@@ -340,7 +340,8 @@ input 1267:32:Elan_Touchpad {
 }
 
 input 1267:32:Elan_TrackPoint {
-    pointer_accel 0.3
+    pointer_accel 1
+    accel_profile "flat"
 }
 
 for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
