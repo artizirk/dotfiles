@@ -53,7 +53,10 @@ function chpwd_profile_krakul() {
     export GIT_COMMITTER_EMAIL="arti@krakul.eu"
 }
 function chpwd_leave_profile_krakul() {
-    unset GIT_AUTHOR_EMAIL GIT_COMMITER_EMAIL
+    [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
+
+    unset GIT_AUTHOR_EMAIL \
+        GIT_COMMITTER_EMAIL
 }
 chpwd_profiles
 
@@ -81,6 +84,9 @@ function chpwd_auto_python_venv() {
     fi
 }
 chpwd_functions+=(chpwd_auto_python_venv)
+
+# https://github.com/Tarrasch/zsh-autoenv
+xsource ~/.config/zsh/zsh-autoenv/autoenv.zsh
 
 if [[ -f /etc/profile.d/vte.sh ]]; then
     source /etc/profile.d/vte.sh
@@ -158,7 +164,22 @@ if [[ -f /usr/share/zsh/site-functions/git-flow-completion.zsh ]];then
     source /usr/share/zsh/site-functions/git-flow-completion.zsh
 fi
 
-export PATH="/home/arti/.bin:/home/arti/.local/bin:$(ruby -e 'print Gem.user_dir')/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
+if command -v ruby > /dev/null; then
+    ruby_gem_user_dir="$(ruby -e 'print Gem.user_dir')"
+else
+    ruby_gem_user_dir=''
+fi
+
+# ZSH allows $PATH to be used as an array
+path=(
+    ~/.bin
+    ~/.local/bin
+    /usr/bin/site_perl
+    /usr/bin/vendor_perl
+    /usr/bin/core_perl
+    "${ruby_gem_user_dir}"
+    $path
+)
 
 
 HISTSIZE=100000
@@ -202,4 +223,5 @@ zle -N bracketed-paste bracketed-paste-magic
 autoload -Uz bracketed-paste-url-magic
 zle -N bracketed-paste bracketed-paste-url-magic
 
+# Reverse `cd -<TAB>` history menu
 setopt pushdminus
