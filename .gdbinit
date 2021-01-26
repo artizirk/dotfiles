@@ -27,3 +27,9 @@ set history save on
 set history size 10000
 set history remove-duplicates unlimited
 set history filename ~/.gdb_history
+
+# give me pretty structures
+set print pretty on
+
+# Allow memory access outside of server provided memory map
+set mem inaccessible-by-default off
