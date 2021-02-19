@@ -34,3 +34,5 @@
 	spellingdictionary = en
 [pull]
 	ff = only
+[init]
+	defaultBranch = master

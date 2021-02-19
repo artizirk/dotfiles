@@ -33,3 +33,9 @@ set print pretty on
 
 # Allow memory access outside of server provided memory map
 set mem inaccessible-by-default off
+
+
+# Clion is stupid
+# define target remote
+# bmconnect /dev/ttyBmpGdb
+# end
