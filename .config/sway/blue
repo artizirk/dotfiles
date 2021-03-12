@@ -1,0 +1,12 @@
+# Work computer
+
+set $left_disp "Goldstar Company Ltd LG HDR 4K 0x0000BBF6"
+set $right_disp "Goldstar Company Ltd LG Ultra HD 0x0000B5BA"
+
+# Work monitors
+output $left_disp pos 0 0
+output $right_disp pos 2560 0
+#
+# 4K resolution on 27" is way too small by default
+output $left_disp scale 1.5
+output $right_disp scale 1.5

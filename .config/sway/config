@@ -36,16 +36,8 @@ set $menu rofi -modi drun -show drun -show-icons -normal-window
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
 output * bg $bg tile
 
-set $left_disp "Goldstar Company Ltd LG HDR 4K 0x0000BBF6"
-set $right_disp "Goldstar Company Ltd LG Ultra HD 0x0000B5BA"
-
-# Work monitors
-output $left_disp pos 0 0
-output $right_disp pos 2560 0
-#
-# 4K resolution on 27" is way too small by default
-output $left_disp scale 1.5
-output $right_disp scale 1.5
+# Include custom config for current computer
+include `hostname`
 
 # Disable T480s laptop internal screen on lid close
 #set $laptop "Unknown 0x0791 0x00000000"
