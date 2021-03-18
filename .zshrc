@@ -84,39 +84,19 @@ function chpwd_auto_python_venv() {
     fi
 }
 chpwd_functions+=(chpwd_auto_python_venv)
+chpwd_auto_python_venv  # Try to enter venv on shell startup
 
 # https://github.com/Tarrasch/zsh-autoenv
 xsource ~/.config/zsh/zsh-autoenv/autoenv.zsh
+# Set gnome-terminal and other vte terminal title to current dir
+xsource /etc/profile.d/vte.sh
+# gitflow-zshcompletion-avh
+xsource /usr/share/zsh/site-functions/git-flow-completion.zsh
+#pkg not found
+xsource /usr/share/doc/pkgfile/command-not-found.zsh
 
-if [[ -f /etc/profile.d/vte.sh ]]; then
-    source /etc/profile.d/vte.sh
-fi
 
-function new-scratch {
-  cur_dir="$HOME/scratch"
-  new_dir="$HOME/tmp/scratch-`date +'%s'`"
-  mkdir -p $new_dir
-  ln -nfs $new_dir $cur_dir
-  cd $cur_dir
-  echo "New scratch dir ready for grinding ;>"
-}
-
-histsearch() { fc -lim "*$@*" 1 }
-
-alias pacman="sudo pacman"
-alias py="python"
-alias py2="python2"
-alias ll="ls -lh"
-alias la="ls -a"
-alias dmesg="dmesg -L"
-alias disapprove="firefox 'data:text/html;base64,PGRpdiBzdHlsZT0idGV4dC1hbGlnbjpjZW50ZXI7Zm9udC1zaXplOjU1dm1pbiI+JiMzMjMyO18mIzMyMzI7PC9kaXY+Cg=='"
-alias ipy="ipython"
-alias htop="htop -d 10"
-alias ip="ip -color=auto"
-alias cp="cp --reflink=auto"
-alias cal="cal -w3"
-alias gitg="LANG=en_US.UTF-8 gitg"
-
+# fzf history search with support for Ctrl+E history edit like with zaw widget before
 if [[ -f /usr/share/fzf/key-bindings.zsh && -f /usr/share/fzf/completion.zsh ]]; then
     source /usr/share/fzf/key-bindings.zsh
     source /usr/share/fzf/completion.zsh
@@ -152,17 +132,52 @@ if [[ -f /usr/share/fzf/key-bindings.zsh && -f /usr/share/fzf/completion.zsh ]];
     bindkey '^R' fzf-history-widget
 fi
 
-EDITOR=nvim
-VISUAL=nvim
+
+# Paste handling
+autoload -Uz bracketed-paste-magic
+zle -N bracketed-paste bracketed-paste-magic
+
+autoload -Uz bracketed-paste-url-magic
+zle -N bracketed-paste bracketed-paste-url-magic
+
+# Reverse `cd -<TAB>` history menu
+setopt pushdminus
+#
+# Utility functions
+
+function new-scratch {
+  cur_dir="$HOME/scratch"
+  new_dir="$HOME/tmp/scratch-`date +'%s'`"
+  mkdir -p $new_dir
+  ln -nfs $new_dir $cur_dir
+  cd $cur_dir
+  echo "New scratch dir ready for grinding ;>"
+}
+
+histsearch() { fc -lim "*$@*" 1 }
+
+alias pacman="sudo pacman"
+alias py="python"
+alias py2="python2"
+alias ll="ls -lh"
+alias la="ls -a"
+alias dmesg="dmesg -L"
+alias disapprove="firefox 'data:text/html;base64,PGRpdiBzdHlsZT0idGV4dC1hbGlnbjpjZW50ZXI7Zm9udC1zaXplOjU1dm1pbiI+JiMzMjMyO18mIzMyMzI7PC9kaXY+Cg=='"
+alias ipy="ipython"
+alias htop="htop -d 10"
+alias ip="ip -color=auto"
+alias cp="cp --reflink=auto"
+alias cal="cal -w3"
+alias gitg="LANG=en_US.UTF-8 gitg"
+
+
+export EDITOR=nvim
+export VISUAL=nvim
 MAILCHECK=0
 MAIL=~/Mail
 
 # iostat colors
 export S_COLORS=auto
-
-if [[ -f /usr/share/zsh/site-functions/git-flow-completion.zsh ]];then
-    source /usr/share/zsh/site-functions/git-flow-completion.zsh
-fi
 
 if command -v ruby > /dev/null; then
     ruby_gem_user_dir="$(ruby -e 'print Gem.user_dir')"
@@ -189,11 +204,6 @@ unsetopt share_history
 setopt INC_APPEND_HISTORY_TIME
 
 
-#pkg not found
-if [ -f /usr/share/doc/pkgfile/command-not-found.zsh ]; then
-    source /usr/share/doc/pkgfile/command-not-found.zsh
-fi
-
 function gedit {
     local REAL_PATH=$PATH;
     if [ -n "$_OLD_VIRTUAL_PATH" ] ; then
@@ -215,13 +225,3 @@ export JOBS=8
 function vless {
     /usr/share/nvim/runtime/macros/less.sh $@
 }
-
-# Paste handling
-autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
-
-autoload -Uz bracketed-paste-url-magic
-zle -N bracketed-paste bracketed-paste-url-magic
-
-# Reverse `cd -<TAB>` history menu
-setopt pushdminus
