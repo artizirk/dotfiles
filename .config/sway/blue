@@ -10,3 +10,7 @@ output $right_disp pos 2560 0
 # 4K resolution on 27" is way too small by default
 output $left_disp scale 1.5
 output $right_disp scale 1.5
+
+xwayland scale 2
+exec xsettingsd
+seat seat0 xcursor_theme Adwaita 24

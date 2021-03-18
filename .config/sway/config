@@ -30,7 +30,6 @@ set $term alacritty
 # None: it's recommended that you pass the final command to sway
 set $menu rofi -modi drun -show drun -show-icons -normal-window
 
-
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
