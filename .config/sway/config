@@ -262,11 +262,14 @@ bindsym XF86MonBrightnessDown exec brightnessctl -m set 5%- | cut -d',' -f4 | cu
 # Authy 2FA window
 for_window [title="^Authy$"] floating enable
 # EstEID
-for_window [class="chrome-token-signing"] floating enable
+for_window [app_id="chrome-token-signing"] floating enable
+# Firefox PIN1 certificate selection dialog
+for_window [title="^Kasutaja.*"] floating enable
 # Launcher
 for_window [class="Rofi"] floating enable
 # Firefox about window
 for_window [instance="Browser" window_role="About"] floating enable
+
 
 # JetBrains
 # Fix rendering of jetbrains splash screen
@@ -276,6 +279,13 @@ for_window [class="jetbrains-*" title="win0"] {
     move position center
 #    move up 300px
 }
+
+for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
+for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+no_focus [title="Slack | mini panel"]
+for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 px
+for_window [title="Slack | mini panel"] move absolute position 2570 px 10 px
 
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py
@@ -334,13 +344,5 @@ input 1267:32:Elan_TrackPoint {
     pointer_accel 1
     accel_profile "flat"
 }
-
-for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
-for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
-no_focus [title="Microsoft Teams Notification"]
-no_focus [title="Slack | mini panel"]
-for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 px
-for_window [title="Slack | mini panel"] move absolute position 2570 px 10 px
-
 
 include /etc/sway/config.d/*
