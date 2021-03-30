@@ -269,6 +269,7 @@ for_window [title="^Kasutaja.*"] floating enable
 for_window [class="Rofi"] floating enable
 # Firefox about window
 for_window [instance="Browser" window_role="About"] floating enable
+for_window [title="Firefox - Jagamise indikaator"] floating enable
 
 
 # JetBrains
@@ -283,9 +284,10 @@ for_window [class="jetbrains-*" title="win0"] {
 for_window [title="Microsoft Teams Notification" class="microsoft teams - preview"] floating enable
 for_window [title="Microsoft Teams Notification" class="Microsoft Teams - Preview"] floating enable
 no_focus [title="Microsoft Teams Notification"]
-no_focus [title="Slack | mini panel"]
+no_focus [title="Slack \| mini panel"]
 for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 px
-for_window [title="Slack | mini panel"] move absolute position 2570 px 10 px
+for_window [title="Slack \| mini panel"] move scratchpad
+for_window [class="Simplicity Studio™" title="Find\/Replace "] floating enable
 
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py
