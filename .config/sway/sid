@@ -1,1 +1,2 @@
 # Laptop
+exec /usr/bin/swaynag-battery --threshold 5
