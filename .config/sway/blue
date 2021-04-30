@@ -1,16 +1,7 @@
 # Work computer
 
-set $left_disp "Goldstar Company Ltd LG HDR 4K 0x0000BBF6"
-set $right_disp "Goldstar Company Ltd LG Ultra HD 0x0000B5BA"
+set $left_disp "Dell Inc. DELL U2719D 3PFNP83"
+set $right_disp "Dell Inc. DELL U2719D JNFNP83"
 
-# Work monitors
 output $left_disp pos 0 0
 output $right_disp pos 2560 0
-#
-# 4K resolution on 27" is way too small by default
-output $left_disp scale 1.5
-output $right_disp scale 1.5
-
-xwayland scale 2
-exec xsettingsd
-seat seat0 xcursor_theme Adwaita 24
