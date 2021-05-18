@@ -35,3 +35,5 @@ set listchars=tab:\ \ ,trail:·,nbsp:⎵
 " spellcheck
 set spelllang=en
 " enable via set spell
+
+set mouse=a
