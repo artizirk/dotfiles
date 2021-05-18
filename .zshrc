@@ -223,6 +223,9 @@ export MANWIDTH=80
 # make npm gyp faster
 export JOBS=8
 
+# under tmux less needs this to support scrolling
+#export LESS='--mouse --wheel-lines=3'
+
 # https://neovim.io/doc/user/various.html#less
 function vless {
     /usr/share/nvim/runtime/macros/less.sh $@
