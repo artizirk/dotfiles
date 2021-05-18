@@ -1,5 +1,3 @@
-env:
-    TERM: 'xterm-256color'
 window:
   gtk_theme_variant: 'dark'
 

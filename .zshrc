@@ -169,7 +169,9 @@ alias ip="ip -color=auto"
 alias cp="cp --reflink=auto"
 alias cal="cal -w3"
 alias gitg="LANG=en_US.UTF-8 gitg"
-
+if [[ "$TERM" == "alacritty" ]]; then
+    alias ssh='TERM=xterm-256color ssh'
+fi
 
 export EDITOR=nvim
 export VISUAL=nvim
