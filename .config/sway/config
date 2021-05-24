@@ -266,7 +266,7 @@ for_window [title="^Authy$"] floating enable
 # EstEID
 for_window [app_id="chrome-token-signing"] floating enable
 # Firefox PIN1 certificate selection dialog
-for_window [title="^Kasutaja.*"] floating enable
+#for_window [title="^Kasutaja.*"] floating enable
 # Launcher
 for_window [class="Rofi"] floating enable
 # Firefox about window
