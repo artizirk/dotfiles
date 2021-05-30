@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# From https://scottlinux.com/2014/07/15/determine-remaining-ssd-life-in-linux/
 #######################################
 # Variables                           #
 #######################################
