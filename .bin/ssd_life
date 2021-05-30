@@ -1,10 +1,11 @@
 #!/bin/bash
 # From https://scottlinux.com/2014/07/15/determine-remaining-ssd-life-in-linux/
+# Or https://askubuntu.com/questions/865792/how-can-i-monitor-the-tbw-on-my-samsung-ssd
 #######################################
 # Variables                           #
 #######################################
 
-SSD_DEVICE="/dev/sda"
+SSD_DEVICE=${1:-"/dev/sda"}
 
 ON_TIME_TAG="Power_On_Hours"
 WEAR_COUNT_TAG="Wear_Leveling_Count"
@@ -21,6 +22,10 @@ BYTES_PER_TB=1099511627776
 
 # Get SMART attributes
 SMART_INFO=$(sudo /usr/sbin/smartctl -A "$SSD_DEVICE")
+DISK_INFO=$(sudo /usr/sbin/smartctl -i "$SSD_DEVICE")
+
+DISK_MODEL=$(echo "$DISK_INFO" | awk 'BEGIN { FS = " *: *" } ; /Device Model/ { print $2 }')
+DISK_SERIAL=$(echo "$DISK_INFO" | awk 'BEGIN { FS = " *: *" } ; /Serial Number/ { print $2 }')
 
 # Extract required attributes
 ON_TIME=$(echo "$SMART_INFO" | grep "$ON_TIME_TAG" | awk '{print $10}')
@@ -36,6 +41,8 @@ TB_WRITTEN=$(echo "scale=3; $BYTES_WRITTEN / $BYTES_PER_TB" | bc)
 # Output results...
 echo "------------------------------"
 echo " SSD Status:   $SSD_DEVICE"
+echo " SSD Model:    $DISK_MODEL"
+echo " SSD Serial:   $DISK_SERIAL"
 echo "------------------------------"
 echo " On time:      $(echo $ON_TIME | sed ':a;s/\B[0-9]\{3\}\>/,&/;ta') hr"
 echo "------------------------------"
