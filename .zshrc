@@ -230,3 +230,9 @@ export JOBS=8
 function vless {
     /usr/share/nvim/runtime/macros/less.sh $@
 }
+
+# If running under windows with pageagent then use it
+# https://github.com/benpye/wsl-ssh-pageant
+if [[ -e /mnt/c/wsl-ssh-pageant/ssh-agent.sock ]]; then
+    export SSH_AUTH_SOCK=/mnt/c/wsl-ssh-pageant/ssh-agent.sock
+fi
