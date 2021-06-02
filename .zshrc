@@ -96,15 +96,20 @@ xsource /usr/share/zsh/site-functions/git-flow-completion.zsh
 xsource /usr/share/doc/pkgfile/command-not-found.zsh
 
 
-# fzf history search with support for Ctrl+E history edit like with zaw widget before
-if [[ -f /usr/share/fzf/key-bindings.zsh && -f /usr/share/fzf/completion.zsh ]]; then
-    source /usr/share/fzf/key-bindings.zsh
-    source /usr/share/fzf/completion.zsh
-    # default is 40%, and that is too much, limit to less lines
-    FZF_TMUX_HEIGHT=6
-    # other shortcuts already use reverse, except history search for some reason..
-    FZF_CTRL_R_OPTS="--reverse"
+# default is 40%, and that is too much, limit to less lines
+FZF_TMUX_HEIGHT=6
+# other shortcuts already use reverse, except history search for some reason..
+FZF_CTRL_R_OPTS="--reverse"
 
+# Arch Linux
+xsource /usr/share/fzf/key-bindings.zsh
+xsource /usr/share/fzf/completion.zsh
+
+# Debian
+xsource /usr/share/doc/fzf/examples/key-bindings.zsh
+
+# fzf history search with support for Ctrl+E history edit like with zaw widget before
+if typeset -f fzf-history-widget > /dev/null; then
     # Copied form key-bindings.zsh
     # CTRL-R - Paste the selected command from history into the command line
     fzf-history-widget() {
