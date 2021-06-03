@@ -241,3 +241,9 @@ function vless {
 if [[ -e /mnt/c/wsl-ssh-pageant/ssh-agent.sock ]]; then
     export SSH_AUTH_SOCK=/mnt/c/wsl-ssh-pageant/ssh-agent.sock
 fi
+
+# We are running under WSL
+if [[ -e /dev/lxss ]]; then
+    # Create pretty serial device names
+    reg.exe query HKLM\\HARDWARE\\DEVICEMAP\\SERIALCOMM | awk '/Device/ {gsub("\r","",$3); print "/dev/ttyS" substr($3,4), "/dev/tty" substr($1,9)}' | sudo xargs -n2 ln -sf
+fi
