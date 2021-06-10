@@ -61,8 +61,8 @@ function chpwd_leave_profile_krakul() {
 chpwd_profiles
 
 hash -d krakul=~/code/krakul  # shorten dir name in prompt
-
 function hash_projects() {
+    # hash everything under krakul projects
     local project_folder
     for project_folder in ~/code/krakul/*; do
         hash -d "${project_folder:t}"="${project_folder}"
@@ -70,6 +70,9 @@ function hash_projects() {
     unset project_folder
 }
 hash_projects
+
+# remove need to add ~ in front of hashed dirs
+setopt cdable_vars
 
 # Enable or disable python virtual env
 function chpwd_auto_python_venv() {
