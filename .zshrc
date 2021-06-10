@@ -62,6 +62,15 @@ chpwd_profiles
 
 hash -d krakul=~/code/krakul  # shorten dir name in prompt
 
+function hash_projects() {
+    local project_folder
+    for project_folder in ~/code/krakul/*; do
+        hash -d "${project_folder:t}"="${project_folder}"
+    done
+    unset project_folder
+}
+hash_projects
+
 # Enable or disable python virtual env
 function chpwd_auto_python_venv() {
     local venv_dir
@@ -229,7 +238,9 @@ export MANWIDTH=80
 export JOBS=8
 
 # under tmux less needs this to support scrolling
-#export LESS='--mouse --wheel-lines=3'
+if [[ "$TERM" == "" ]]; then
+    export LESS='--mouse --wheel-lines=3'
+fi
 
 # https://neovim.io/doc/user/various.html#less
 function vless {
