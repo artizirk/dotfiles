@@ -35,3 +35,5 @@
 	ff = only
 [init]
 	defaultBranch = master
+[rerere]
+	enabled = true
