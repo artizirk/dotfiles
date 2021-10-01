@@ -184,7 +184,6 @@ alias ipy="ipython"
 alias htop="htop -d 10"
 alias ip="ip -color=auto"
 alias cp="cp --reflink=auto"
-alias cal="cal -w3"
 alias gitg="LANG=en_US.UTF-8 gitg"
 if [[ "$TERM" == "alacritty" ]]; then
     alias ssh='TERM=xterm-256color ssh'
@@ -222,7 +221,18 @@ SAVEHIST=100000
 unsetopt share_history
 setopt INC_APPEND_HISTORY_TIME
 
+# by default show 3 months of calendar with week number
+# but also allow to override it
+function cal {
+    local CALENDAR=$(which -p cal)
+    if [[ $# -eq 0 ]]; then
+        $CALENDAR -w3
+    else
+        $CALENDAR "$@"
+    fi
+}
 
+# this fixes gedit python plugins that otherwise are broken under venv
 function gedit {
     local REAL_PATH=$PATH;
     if [ -n "$_OLD_VIRTUAL_PATH" ] ; then
