@@ -60,7 +60,10 @@ function chpwd_leave_profile_krakul() {
 }
 chpwd_profiles
 
-hash -d krakul=~/code/krakul  # shorten dir name in prompt
+# First clear grml-zsh-config provided directory hashes
+hash -d -r
+# shorten dir name in prompt
+hash -d krakul=~/code/krakul
 function hash_projects() {
     # hash everything under krakul projects
     local project_folder
@@ -104,7 +107,7 @@ xsource ~/.config/zsh/zsh-autoenv/autoenv.zsh
 xsource /etc/profile.d/vte.sh
 # gitflow-zshcompletion-avh
 xsource /usr/share/zsh/site-functions/git-flow-completion.zsh
-#pkg not found
+# pkg not found
 xsource /usr/share/doc/pkgfile/command-not-found.zsh
 
 
