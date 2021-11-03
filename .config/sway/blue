@@ -5,3 +5,7 @@ set $right_disp "Dell Inc. DELL U2719D JNFNP83"
 
 output $left_disp pos 0 0
 output $right_disp pos 2560 0
+
+input * {
+	xkb_numlock disabled
+}

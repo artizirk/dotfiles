@@ -328,7 +328,7 @@ input * {
     xkb_variant us,
 #    xkb_options caps:escape,grp:win_space_toggle
     xkb_options caps:escape
-    xkb_numlock enabled
+#    xkb_numlock enabled
     tap enabled
 }
 
