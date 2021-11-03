@@ -16,6 +16,7 @@
 [core]
 	editor = nvim
 	quotepath = false
+	commitGraph = true
 [credential]
 	helper = /usr/lib/git-core/git-credential-libsecret
 [sendemail]
@@ -37,3 +38,7 @@
 	defaultBranch = master
 [rerere]
 	enabled = true
+[receive]
+	advertisePushOptions = true
+[gc]
+	writeCommitGraph = true
