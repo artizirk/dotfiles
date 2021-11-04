@@ -35,6 +35,9 @@ set $menu rofi -modi drun -show drun -show-icons -normal-window
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
 output * bg $bg tile
 
+# Default autostart workspace
+set $chat_workspace 9
+
 # Include custom config for current computer
 include `hostname`
 

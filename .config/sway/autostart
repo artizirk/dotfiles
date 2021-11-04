@@ -1,11 +1,18 @@
-for_window [app_id="evolution"] move to workspace 9
-for_window [app_id="org.kde.quassel"] move to workspace 9
-for_window [class="Element"] move to workspace 9
-for_window [class="Slack"] move to workspace 9
-for_window [app_id="telegramdesktop"] move to workspace 9
+# Default layout
+for_window [workspace=$chat_workspace] layout tabbed
 
+for_window [app_id="evolution"] move to workspace $chat_workspace
 exec evolution
+
+for_window [app_id="org.kde.quassel"] move to workspace $chat_workspace
+for_window [app_id="quasselclient"] move to workspace $chat_workspace
 exec quasselclient
+
+for_window [class="Element"] move to workspace $chat_workspace
 exec element-desktop
-exec /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=slack --file-forwarding com.slack.Slack
+
+for_window [class="Slack"] move to workspace $chat_workspace
+exec slack
+
+for_window [app_id="telegramdesktop"] move to workspace $chat_workspace
 exec telegram-desktop
