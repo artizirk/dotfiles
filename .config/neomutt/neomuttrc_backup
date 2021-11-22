@@ -2,18 +2,13 @@ set realname="Arti Zirk"
 set from=arti.zirk@gmail.com
 set imap_user=arti.zirk@gmail.com
 # set imap_pass=PASSWORD
-#source secrets
-#set folder=imaps://imap.gmail.com/
+source secrets
+set folder=imaps://imap.gmail.com/
 
-set virtual_spoolfile=yes
-set folder=~/Mail
-virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
-
-#set spoolfile   = +INBOX
+set spoolfile   = +INBOX
 #mailboxes       = +INBOX
 
-# subscribe to all imap folders
-#set imap_check_subscribed
+set imap_check_subscribed
 
 # NotMuch config
 set nm_default_url = "notmuch:///home/arti/Mail"
@@ -28,7 +23,7 @@ set header_cache = ~/.cache/mutt/headers
 set message_cachedir = "~/.cache/mutt"
 
 # Specify where to save and/or look for postponed messages.
-#set postponed = +[Gmail]/Drafts
+set postponed = +[Gmail]/Drafts
 
 # Allow Mutt to open a new IMAP connection automatically.
 unset imap_passive
@@ -38,10 +33,6 @@ set imap_keepalive = 300
 
 # How often to check for new mail (time in seconds).
 set mail_check = 120
-
-# group by thread and sort
-set sort=threads
-set sort_aux=last-date-received
 
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
@@ -56,7 +47,6 @@ set sidebar_indent_string="  "          # Indent with two spaces
 color progress white red
 
 
-# Use only 7bit ascii or utf-8
 set send_charset="us-ascii:utf-8"
 
 
