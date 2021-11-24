@@ -1,13 +1,12 @@
 set realname="Arti Zirk"
 set from=arti.zirk@gmail.com
-set imap_user=arti.zirk@gmail.com
-# set imap_pass=PASSWORD
+#set imap_user=arti.zirk@gmail.com
+#set imap_pass=PASSWORD
 #source secrets
 #set folder=imaps://imap.gmail.com/
 
 set virtual_spoolfile=yes
 set folder=~/Mail
-virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
 
 #set spoolfile   = +INBOX
 #mailboxes       = +INBOX
@@ -16,7 +15,10 @@ virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
 #set imap_check_subscribed
 
 # NotMuch config
+set vfolder_format = "%6n(%6N) %f"
 set nm_default_url = "notmuch:///home/arti/Mail"
+virtual-mailboxes "inbox" "notmuch://?query=tag:inbox"
+virtual-mailboxes `for tag in $(notmuch search --output=tags '*'); do echo -ne \"$tag\" \"notmuch://\?query=tag:$tag\" ""; done`
 
 # Store message headers locally to speed things up.
 # If hcache is a folder, Mutt will create sub cache folders for each account which may speeds things up even more.
@@ -31,20 +33,41 @@ set message_cachedir = "~/.cache/mutt"
 #set postponed = +[Gmail]/Drafts
 
 # Allow Mutt to open a new IMAP connection automatically.
-unset imap_passive
+#unset imap_passive
 
 # Keep the IMAP connection alive by polling intermittently (time in seconds).
-set imap_keepalive = 300
+#set imap_keepalive = 300
 
 # How often to check for new mail (time in seconds).
-set mail_check = 120
+#set mail_check = 120
 
 # group by thread and sort
 set sort=threads
 set sort_aux=last-date-received
 
+
+# --------------------------------------------------------------------------
+# FUNCTIONS – shown with an example mapping
+# --------------------------------------------------------------------------
+# open a different virtual folder
+bind index,pager X change-vfolder
+# read entire thread of the current message
+bind index,pager + entire-thread
+# generate virtual folder from query
+bind index,pager \eX vfolder-from-query
+# generate virtual folder from query with time window
+#bind index < vfolder-window-backward
+#bind index > vfolder-window-forward
+
+# Ctrl-Shift-P – Previous Mailbox
+bind index,pager \CP sidebar-prev
+# Ctrl-Shift-N – Next Mailbox
+bind index,pager \CN sidebar-next
+# Ctrl-Shift-O – Open Highlighted Mailbox
+bind index,pager \CO sidebar-open
+
 set sidebar_visible
-set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_format = "%D%?F? [%F]?%* %?N?%N/?%S"
 set sidebar_divider_char = '█'
 set mail_check_stats
 set sidebar_short_path                  # Shorten mailbox names
