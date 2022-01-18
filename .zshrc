@@ -60,6 +60,11 @@ function chpwd_leave_profile_krakul() {
 }
 chpwd_profiles
 
+
+# for some reason zsh does not pick up git-subrepo custom command
+# I have to add it manually to git completion
+zstyle ':completion:*:*:git:*' user-commands subrepo:'perform git-subrepo operations'
+
 # First clear grml-zsh-config provided directory hashes
 hash -d -r
 # shorten dir name in prompt
