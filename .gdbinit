@@ -21,6 +21,7 @@ end
 
 # Load .gdbinit files from current dir
 set auto-load local-gdbinit
+set auto-load safe-path ~
 
 # save command history
 set history save on
