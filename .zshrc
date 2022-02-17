@@ -279,3 +279,26 @@ if [[ -e /dev/lxss ]]; then
     # Create pretty serial device names
     reg.exe query HKLM\\HARDWARE\\DEVICEMAP\\SERIALCOMM | awk '/Device/ {gsub("\r","",$3); print "/dev/ttyS" substr($3,4), "/dev/tty" substr($1,9)}' | sudo xargs -n2 ln -sf
 fi
+
+
+function nitroid {
+    # Switch Nitrokey Start Identity
+    # https://github.com/Nitrokey/pynitrokey/tree/70398d9d87d002c14402591dfa6e4fe9e7182351#switching-id
+
+    local ID=$1
+
+    if ! [[ "$ID" =~ [0-2] ]]; then
+        echo "Usage: $0 ID"
+        echo "Where identity ID is in range 0-2"
+        return 1
+    fi
+
+    if gpg-connect-agent --hex "scd apdu  00 85 00 0$ID" /bye | grep -q ERR; then
+        sleep 1
+        gpg-connect-agent --decode "scd serialno" /bye
+    else
+        echo "already set"
+    fi
+
+}
+compdef 'compadd -X "Identity" 0 1 2' nitroid
