@@ -22,6 +22,7 @@ end
 # Load .gdbinit files from current dir
 set auto-load local-gdbinit
 set auto-load safe-path ~
+add-auto-load-safe-path /usr/lib/go/src/runtime/runtime-gdb.py
 
 # save command history
 set history save on
