@@ -28,6 +28,18 @@ command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+
+# Generic media player support
+#
+# This displays "ARTIST - SONG" if a music is playing.
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+[playerctl]
+command=~/.config/i3blocks/$BLOCK_NAME
+#instance=spoti
+interval=5
+signal=10
+
+
 # Volume indicator
 #
 # The first parameter sets the step (and units to display)
@@ -110,17 +122,6 @@ interval=30
 #[battery]
 #command=while :; do ~/.config/i3blocks/upower-listen.py; done
 #interval=persis
-
-
-# Generic media player support
-#
-# This displays "ARTIST - SONG" if a music is playing.
-# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-[playerctl]
-command=~/.config/i3blocks/$BLOCK_NAME
-#instance=spoti
-interval=5
-signal=10
 
 # OpenVPN support
 #
