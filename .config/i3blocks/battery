@@ -1,10 +1,15 @@
 #!/bin/bash
 #cd "/sys/class/power_supply/$BLOCK_INSTANCE/"
 
-status=$(busctl get-property org.freedesktop.UPower /org/freedesktop/UPower/devices/DisplayDevice org.freedesktop.UPower.Device State | cut -d' ' -f2)
-charge_f=$(busctl get-property org.freedesktop.UPower /org/freedesktop/UPower/devices/DisplayDevice org.freedesktop.UPower.Device Percentage | cut -d' ' -f2)
+print_dev_status() {
+	dev_path=$1
+	status=$(busctl get-property org.freedesktop.UPower $dev_path org.freedesktop.UPower.Device State | cut -d' ' -f2)
+	charge_f=$(busctl get-property org.freedesktop.UPower $dev_path org.freedesktop.UPower.Device Percentage | cut -d' ' -f2)
 
-echo -e "$charge_f %"
+	echo -e "$charge_f %"
+}
+
+print_dev_status '/org/freedesktop/UPower/devices/DisplayDevice'
 
 #if [[ "$charge_f" -lt 20 ]]; then
 #    printf '\uf244'
