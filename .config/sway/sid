@@ -1,2 +1,9 @@
 # Laptop
 exec /usr/bin/swaynag-battery --threshold 5
+
+set $left_disp "Ancor Communications Inc VG248 E2LMQS007126"
+set $right_disp "Unknown 0x0791 0x00000000"
+set $chat_workspace 10
+
+output $left_disp pos 0 0
+output $right_disp pos 0 1080
