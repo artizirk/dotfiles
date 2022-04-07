@@ -206,7 +206,7 @@ MAIL=~/Mail
 export S_COLORS=auto
 
 if command -v ruby > /dev/null; then
-    ruby_gem_user_dir="$(ruby -e 'print Gem.user_dir')"
+    ruby_gem_user_dir="$(ruby -e 'print Gem.user_dir')/bin"
 else
     ruby_gem_user_dir=''
 fi
