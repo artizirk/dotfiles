@@ -42,3 +42,9 @@
 	advertisePushOptions = true
 [gc]
 	writeCommitGraph = true
+[color]
+	ui = auto
+[core]
+	abbrev = 12
+[pretty]
+	fixes = Fixes: %h (\"%s\")

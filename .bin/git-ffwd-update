@@ -1,4 +1,5 @@
 #!/bin/bash
+# Update all local branches from remote
 # src: https://stackoverflow.com/a/9076361
 
 main() {
