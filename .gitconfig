@@ -49,3 +49,5 @@
 	abbrev = 12
 [pretty]
 	fixes = Fixes: %h (\"%s\")
+[tag]
+	sort = v:refname
