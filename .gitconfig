@@ -51,3 +51,5 @@
 	fixes = Fixes: %h (\"%s\")
 [tag]
 	sort = v:refname
+#[url "ssh://git@github.com/"]
+#    insteadOf = https://github.com/
