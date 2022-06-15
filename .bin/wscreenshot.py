@@ -33,8 +33,7 @@ else:
             image = Popen(["grim", "-o", f"{output.get('name')}", '-'], stdout=PIPE)
             viewer = Popen(['swayimg', '-f', '-o', f'{output.get("name")}','-'], stdin=image.stdout)
             image_viewers.append(viewer)
-
-        time.sleep(0.3)
+            time.sleep(0.1)
 
         region = run('slurp', check=True, capture_output=True)
         run(["grim", '-g', '-', file_name], check=True, input=region.stdout)
