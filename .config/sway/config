@@ -266,6 +266,7 @@ bindsym XF86MonBrightnessDown exec brightnessctl -m set 5%- | cut -d',' -f4 | cu
 for_window [title="^Authy$"] floating enable
 # EstEID
 for_window [app_id="chrome-token-signing"] floating enable
+for_window [app_id="eu.web-eid.web-eid"] floating enable
 # Firefox PIN1 certificate selection dialog
 #for_window [title="^Kasutaja.*"] floating enable
 # Launcher
