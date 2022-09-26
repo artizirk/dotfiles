@@ -1,0 +1,2 @@
+# so that i can autoload -Uz local functions
+fpath=( ~/.config/zsh/functions $fpath)
