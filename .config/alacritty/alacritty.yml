@@ -1,5 +1,5 @@
 window:
-  gtk_theme_variant: 'dark'
+  decoration_theme_variant: 'dark'
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
