@@ -42,6 +42,11 @@ set mem inaccessible-by-default off
 # bmconnect /dev/ttyBmpGdb
 # end
 
+# upgrade remote commands
+define target remote
+  target extended-remote $arg0
+end
+
 
 define xxd
   if $argc < 2
