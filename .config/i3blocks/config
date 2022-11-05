@@ -46,10 +46,10 @@ signal=10
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
-command=~/.config/i3blocks/volume 2%
+command=~/.config/i3blocks/volume-pulseaudio -d -i 1 -H '' -M '' -L '' -X 'm'
 #label=VOL
 label=♪
-instance=Master
+#instance=Master
 #instance=PCM
 interval=1
 signal=10

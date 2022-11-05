@@ -254,9 +254,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # volume
-bindsym XF86AudioMute exec amixer set Master toggle
-bindsym XF86AudioRaiseVolume exec amixer set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer set Master 5%-
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #brightness control
 bindsym XF86MonBrightnessUp exec brightnessctl -m set +5% | cut -d',' -f4 | cut -d'%' -f1 | xargs -n1 tvolnoti-show -s ~/.config/tvolnoti/themes/dark/display_brightness.svg
