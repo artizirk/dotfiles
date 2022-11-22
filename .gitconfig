@@ -53,3 +53,5 @@
 	sort = v:refname
 [url "ssh://git@github.com/krakul"]
     insteadOf = https://github.com/krakul
+[protocol "file"]
+	allow = always
