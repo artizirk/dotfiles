@@ -28,7 +28,7 @@ set $lockcmd ~/.bin/swaylock.sh $bg
 set $term alacritty
 # Your preferred application launcher
 # None: it's recommended that you pass the final command to sway
-set $menu rofi -modi drun -show drun -show-icons -normal-window
+set $menu rofi -show combi -modes combi -combi-modes "drun,run" -show-icons -normal-window
 
 ### Output configuration
 #
