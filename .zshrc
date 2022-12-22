@@ -4,15 +4,15 @@
 fpath=( ~/.config/zsh/functions $fpath)
 
 # Virtualenv support
-function virtual_env_prompt () {
+function _virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
-grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
+grml_theme_add_token virtual-env -f _virtual_env_prompt '%F{magenta}' '%f'
 
-function config_env_prompt () {
+function _config_env_prompt () {
     REPLY=${CONFIG_ENV+(${CONFIG_ENV:t}) }
 }
-grml_theme_add_token config-env -f config_env_prompt
+grml_theme_add_token config-env -f _config_env_prompt
 
 zstyle ':prompt:grml:left:setup' items rc config-env virtual-env change-root user at host path vcs percent
 
