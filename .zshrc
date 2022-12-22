@@ -222,6 +222,7 @@ path=(
     $path
 )
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 HISTSIZE=100000
 SAVEHIST=100000
