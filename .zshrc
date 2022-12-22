@@ -30,6 +30,17 @@ function _config_deactivate {
     unset GIT_DIR GIT_WORK_TREE CONFIG_ENV
 }
 
+function config_status {
+    # Borrowed from https://mitxela.com/projects/dotfiles_management
+    (
+        _config_activate
+        for i in $(git ls-files); do
+          echo -n "$(git -c color.status=always status $i -s | sed "s#$i##")"
+          echo -e "¬/$i¬\e[0;33m$(git -c color.ui=always log -1 --format="%s" -- $i)\e[0m"
+        done
+    ) | column -t --separator=¬ -T2
+}
+
 function config {
     if [[ -n "$1" ]]; then
         _config_activate
