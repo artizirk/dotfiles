@@ -1,9 +1,9 @@
 # Home desktop computer
 
-set $left_disp "Dell Inc. DELL U2715H GH85D66Q08QS"
-output $left_disp pos 0 0
-set $right_disp "Dell Inc. DELL S2721DGF 8SVBP83"
+set $right_disp "Dell Inc. DELL U2715H GH85D66Q08QS"
 output $right_disp pos 2560 0
+set $left_disp "Dell Inc. DELL S2721DGF 8SVBP83"
+output $left_disp pos 0 0
 
 input * {
         xkb_numlock enabled
