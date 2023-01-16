@@ -12,6 +12,7 @@ for_window [class="Element"] move to workspace $chat_workspace
 exec element-desktop
 
 for_window [class="Slack"] move to workspace $chat_workspace
+for_window [app_id="Slack"] move to workspace $chat_workspace
 exec slack
 
 for_window [app_id="telegramdesktop"] move to workspace $chat_workspace
