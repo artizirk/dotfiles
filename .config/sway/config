@@ -50,7 +50,7 @@ include `hostname`
 exec xrdb -load ~/.Xresources
 
 # Notification daemon
-exec mako --default-timeout 10000
+exec mako
 
 # Volume and Brightness notification
 exec tvolnoti -n  -T dark
@@ -70,8 +70,6 @@ exec dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPL
 # React to smart card events
 # packaged in `pam_pkcs11`
 exec card_eventmgr config_file=.config/pam_pkcs11/card_eventmgr.conf
-
-exec syncthing-gtk --minimized
 
 ### Idle configuration
 exec swayidle \
