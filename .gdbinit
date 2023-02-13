@@ -23,6 +23,7 @@ end
 set auto-load local-gdbinit
 set auto-load safe-path ~
 add-auto-load-safe-path /usr/lib/go/src/runtime/runtime-gdb.py
+add-auto-load-safe-path /usr/share/gdb/auto-load/usr/lib
 
 # save command history
 set history save on
