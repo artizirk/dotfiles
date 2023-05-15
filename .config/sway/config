@@ -39,7 +39,7 @@ output * bg $bg tile
 set $chat_workspace 9
 
 # Include custom config for current computer
-include `hostname`
+include `hostnamectl\ hostname`
 
 # Disable T480s laptop internal screen on lid close
 #set $laptop "Unknown 0x0791 0x00000000"
