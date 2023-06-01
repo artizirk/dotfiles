@@ -35,7 +35,7 @@ set $menu rofi -show combi -modes combi -combi-modes "drun,run" -show-icons -nor
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
 output * bg $bg tile
 
-output * max_render_time 2
+output * max_render_time 6
 
 # Default autostart workspace
 set $chat_workspace 9
