@@ -4,6 +4,8 @@ set $right_disp "Dell Inc. DELL U2715H GH85D66Q08QS"
 output $right_disp pos 2560 0
 set $left_disp "Dell Inc. DELL S2721DGF 8SVBP83"
 output $left_disp pos 0 0
+output $left_disp adaptive_sync on
+output $left_disp mode 2560x1440@165.080Hz
 
 input * {
         xkb_numlock enabled
