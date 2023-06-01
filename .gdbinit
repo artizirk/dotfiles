@@ -44,9 +44,9 @@ set mem inaccessible-by-default off
 # end
 
 # upgrade remote commands
-define target remote
-  target extended-remote $arg0
-end
+#define target remote
+#  target extended-remote $arg0
+#end
 
 
 define xxd
