@@ -1,0 +1,15 @@
+order += mpris
+order += volume_status
+order += battery_level
+order += clock
+
+volume_status {
+	command = 'pactl'
+	volume_delta = 1
+
+}
+
+clock {
+	format = "{Europe/Tallinn}"
+	time_format = "{icon} +%Y-%m-%d %H:%M:%S"
+}
