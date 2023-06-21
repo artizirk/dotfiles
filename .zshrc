@@ -101,21 +101,11 @@ setopt cdable_vars
 
 # Enable or disable python virtual env
 function chpwd_auto_python_venv() {
-    local venv_dir
-    local cur_dir="${PWD}"
-    while [[ "${cur_dir}" != / ]]; do
-        if [[ -f "${cur_dir}/venv/bin/activate" ]]; then
-            venv_dir="${cur_dir}/venv"
-            break
-        fi
-        # :P does `realpath(3)`
-        # :h removes 1 trailing pathname component
-        cur_dir="${cur_dir:P:h}"
-    done
-    if [[ -z "${VIRTUAL_ENV}" ]] && [[ -n "${venv_dir}" ]]; then
-        # we found venv dir that is not yet activated
-        source "${venv_dir}"/bin/activate
-    elif [[ -z "${venv_dir}" ]] && [[ -n "${VIRTUAL_ENV}" ]]; then
+    local venv_activation_script=((../)#(.|)(v|)env/bin/activate(#qN.omY1:a))
+    if [[ -n "${venv_activation_script}" && ( -z "${VIRTUAL_ENV}" || "${VIRTUAL_ENV}/bin/activate" != "${venv_activation_script}" ) ]]; then
+        # we found venv dir that is not yet activated or is different from currently active one
+        source "${venv_activation_script}"
+    elif [[ -z "${venv_activation_script}" && -n "${VIRTUAL_ENV}" ]]; then
         # we have activated virtual env but we cant find venv folder anymore
         deactivate
     fi
