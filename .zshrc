@@ -102,7 +102,9 @@ setopt cdable_vars
 # Enable or disable python virtual env
 function chpwd_auto_python_venv() {
     local venv_activation_script=((../)#(.|)(v|)env/bin/activate(#qN.omY1:a))
-    if [[ -n "${venv_activation_script}" && ( -z "${VIRTUAL_ENV}" || "${VIRTUAL_ENV}/bin/activate" != "${venv_activation_script}" ) ]]; then
+    # dont check for (current_venv != found_venv) here because
+    # we want to support swtiching between venvs
+    if [[ -n "${venv_activation_script}" && -z "${VIRTUAL_ENV}" ]]; then
         # we found venv dir that is not yet activated or is different from currently active one
         source "${venv_activation_script}"
     elif [[ -z "${venv_activation_script}" && -n "${VIRTUAL_ENV}" ]]; then
