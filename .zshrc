@@ -5,7 +5,13 @@ fpath=( ~/.config/zsh/functions $fpath)
 
 # Virtualenv support
 function _virtual_env_prompt () {
-    REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+    # new pyvenv has a seperate variable for custom prompt value
+    REPLY=${VIRTUAL_ENV_PROMPT+${VIRTUAL_ENV_PROMPT}}
+
+    # support old-school virtualenv
+    if [[ -z "${REPLY}" ]]; then
+        REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
+    fi
 }
 grml_theme_add_token virtual-env -f _virtual_env_prompt '%F{magenta}' '%f'
 
