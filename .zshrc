@@ -259,6 +259,18 @@ function gedit {
     PATH=$REAL_PATH env -u VIRTUAL_ENV /usr/bin/gedit $@;
 }
 
+# NodeJS people really love to erase the terminal scrollback buffer
+# running npm through cat usually solves it
+# https://nodejs.org/api/tty.html#tty
+# https://github.com/facebook/create-react-app/issues/2495
+function npm {
+    (
+    export COLOR=1
+    export REACT_APP_NO_CLEAR_CONSOLE=1
+    /usr/bin/npm $@ | cat
+    )
+}
+
 # i don't like that systemd by default uses a pager
 export SYSTEMD_PAGER=''
 
