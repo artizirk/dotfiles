@@ -244,9 +244,9 @@ setopt INC_APPEND_HISTORY_TIME
 function cal {
     local CALENDAR=$(which -p cal)
     if [[ $# -eq 0 ]]; then
-        $CALENDAR -w3
+        $CALENDAR -m -w3
     else
-        $CALENDAR "$@"
+        $CALENDAR -m "$@"
     fi
 }
 
