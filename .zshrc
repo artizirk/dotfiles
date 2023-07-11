@@ -202,9 +202,6 @@ alias htop="htop -d 10"
 alias ip="ip -color=auto"
 alias cp="cp --reflink=auto"
 alias gitg="LANG=en_US.UTF-8 gitg"
-if [[ "$TERM" == "alacritty" ]]; then
-    alias ssh='TERM=xterm-256color ssh'
-fi
 
 export EDITOR=nvim
 export VISUAL=nvim
@@ -267,7 +264,17 @@ function npm {
     (
     export COLOR=1
     export REACT_APP_NO_CLEAR_CONSOLE=1
-    /usr/bin/npm $@ | cat
+    exec /usr/bin/npm $@ | cat
+    )
+}
+
+
+function ssh {
+    (
+    if [[ "$TERM" == "alacritty" ]]; then
+        export TERM=xterm-256color
+    fi
+    exec /usr/bin/ssh $@
     )
 }
 
