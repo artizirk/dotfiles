@@ -3,10 +3,37 @@
 # so that i can autoload -Uz local functions
 fpath=( ~/.config/zsh/functions $fpath)
 
+# Use a REAL regex engine
+zmodload zsh/pcre
+
 # Virtualenv support
 function _virtual_env_prompt () {
     # new pyvenv has a seperate variable for custom prompt value
     REPLY=${VIRTUAL_ENV_PROMPT+${VIRTUAL_ENV_PROMPT}}
+
+    # Try to read the prompt name form pyvenv.cfg
+    if [[ -z "${REPLY}" && -f "$VIRTUAL_ENV/pyvenv.cfg" ]]; then
+	# Matches lines with following syntax
+	# prompt = 'cool prompt'
+	# prompt = "cool prompt"
+	# prompt = cool
+	# prompt=cool prompt
+	# heredoc is used here so that I don't have to
+	# manually escape the regex 🤮
+        local prompt_re
+	read -r prompt_re <<-'EOF'
+	^prompt\s*=\s*['"]?(.+?)['"]?$
+	EOF
+
+	# -m turns on multiline support, this makes ^ and $ anchor work in multiline string
+	pcre_compile -m ${prompt_re}
+
+	# And now its supper easy to get the value
+	if pcre_match -- "$(<$VIRTUAL_ENV/pyvenv.cfg)"
+	then
+            REPLY="(${match[1]}) "
+	fi
+    fi
 
     # support old-school virtualenv
     if [[ -z "${REPLY}" ]]; then
