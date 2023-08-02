@@ -35,7 +35,6 @@ set $menu rofi -show combi -modes combi -combi-modes "drun,run" -show-icons -nor
 # Default wallpaper (more resolutions are available in __DATADIR__/backgrounds/sway/)
 output * bg $bg tile
 
-output * max_render_time 6
 
 # Default autostart workspace
 set $chat_workspace 9
@@ -96,6 +95,9 @@ bindsym Scroll_Lock exec $lockcmd
 
 # Alt+Tab window switcher
 bindsym Alt+Tab exec ~/.bin/switch_window.py
+
+bindsym $mod+c exec ~/code/krakul/internal/cutool/contrib/rofi_time_tracker.py
+
 
 # Hack that adds a emoji to all window titles so that title height is somewhat constant
 # You can read mode about this here https://github.com/swaywm/sway/issues/3114
