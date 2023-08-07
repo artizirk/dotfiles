@@ -96,7 +96,7 @@ bindsym Scroll_Lock exec $lockcmd
 # Alt+Tab window switcher
 bindsym Alt+Tab exec ~/.bin/switch_window.py
 
-bindsym $mod+c exec ~/code/krakul/internal/cutool/contrib/rofi_time_tracker.py
+bindsym $mod+c exec ~/code/krakul/internal/cutool-rofi/contrib/rofi_time_tracker.py
 
 
 # Hack that adds a emoji to all window titles so that title height is somewhat constant
