@@ -358,3 +358,8 @@ function nitroid {
 
 }
 compdef 'compadd -X "Identity" 0 1 2' nitroid
+
+
+function cpr {
+    rsync --archive -hh --partial --info=stats1,progress2 "$@"
+}
