@@ -141,8 +141,6 @@ chpwd_auto_python_venv  # Try to enter venv on shell startup
 
 # https://github.com/Tarrasch/zsh-autoenv
 xsource ~/.config/zsh/zsh-autoenv/autoenv.zsh
-# Set gnome-terminal and other vte terminal title to current dir
-xsource /etc/profile.d/vte.sh
 # gitflow-zshcompletion-avh
 xsource /usr/share/zsh/site-functions/git-flow-completion.zsh
 # pkg not found
