@@ -1,2 +1,8 @@
+# Load zprofile for interactive prompts
+# Some packages configure environment variables via this way
+#if [[ ! -o login  && -o interactive ]]; then
+#	source /etc/zsh/zprofile
+#fi
+
 # so that i can autoload -Uz local functions
 fpath=( ~/.config/zsh/functions $fpath)
