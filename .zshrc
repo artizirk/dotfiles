@@ -1,8 +1,5 @@
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
-# so that i can autoload -Uz local functions
-fpath=( ~/.config/zsh/functions $fpath)
-
 # Use a REAL regex engine
 zmodload zsh/pcre
 
