@@ -13,6 +13,7 @@ end
 -- This is where you actually apply your config choices
 
 config.font = wezterm.font 'Terminus'
+config.adjust_window_size_when_changing_font_size = false
 config.color_scheme = 'Tango (base16)'
 config.colors = {
   -- The default text color
@@ -31,6 +32,7 @@ config.window_padding = {
   bottom = 0,
 }
 
+front_end = "WebGpu"
 
 config.enable_kitty_keyboard = true
 
