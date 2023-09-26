@@ -301,7 +301,7 @@ function npm {
 
 function ssh {
     (
-    if [[ "$TERM" == "alacritty" ]]; then
+    if [[ "$TERM" == "foot" ]]; then
         export TERM=xterm-256color
     fi
     exec /usr/bin/ssh $@
