@@ -49,6 +49,10 @@ zstyle ':prompt:grml:left:setup' items rc config-env virtual-env change-root use
 # Disable right side sad smiley, works nicer with resized terminal
 zstyle ':prompt:grml:right:setup' use-rprompt false
 
+# disable PROMPT_EOL_MARK or also known as % on end of line
+# https://unix.stackexchange.com/a/302710
+#set +o prompt_cr +o prompt_sp
+
 # Git based dotfiles setup start
 function _config_activate {
     export GIT_DIR=$HOME/.cfg/
