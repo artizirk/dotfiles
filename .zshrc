@@ -55,7 +55,7 @@ zstyle ':prompt:grml:right:setup' use-rprompt false
 
 # enable OSC 133 shell prompt start/end reporting
 # so that the terminal can scroll jump between prompts
-#xsource ~/.config/zsh/functions/semantic-prompt.zsh
+xsource ~/.config/zsh/functions/semantic-prompt.zsh
 
 # Git based dotfiles setup start
 function _config_activate {
