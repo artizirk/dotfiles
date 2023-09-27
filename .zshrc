@@ -53,6 +53,10 @@ zstyle ':prompt:grml:right:setup' use-rprompt false
 # https://unix.stackexchange.com/a/302710
 #set +o prompt_cr +o prompt_sp
 
+# Tell to the terminal about our current working directory
+# NB: turns out that alacritty snopps that info from /proc/PID/cwd
+xsource ~/.config/zsh/functions/osc7-pwd.zsh
+
 # enable OSC 133 shell prompt start/end reporting
 # so that the terminal can scroll jump between prompts
 xsource ~/.config/zsh/functions/semantic-prompt.zsh
