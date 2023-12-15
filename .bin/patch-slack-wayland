@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+udo sed -i -e 's#Exec=/usr/bin/slack %U#Exec=/usr/bin/slack\ %U\ --enable-features=WebRTCPipeWireCapturer#' /usr/share/applications/slack.desktop
