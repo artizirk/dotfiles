@@ -13,7 +13,7 @@ exec element-desktop
 
 for_window [class="Slack"] move to workspace $chat_workspace
 for_window [app_id="Slack"] move to workspace $chat_workspace
-exec slack --enable-features=WebRTCPipeWireCapturer
+exec slack --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer --ozone-platform-hint=auto
 exec flatpak run com.slack.Slack
 
 for_window [app_id="telegramdesktop"] move to workspace $chat_workspace
