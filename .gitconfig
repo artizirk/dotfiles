@@ -56,3 +56,5 @@
     insteadOf = https://github.com/krakul
 [protocol "file"]
 	allow = always
+[column]
+	ui = auto
