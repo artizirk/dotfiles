@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Borrowed from
+# https://github.com/LukeSmithxyz/voidrice/blob/7a96fb100cf385e05c211937b509d2bf166299e6/.local/bin/statusbar/sb-volume
+
+# Prints the current volume or 🔇 if muted.
+
+function select_output {
+	local NEW_OUTPUT SINKS
+	NEW_OUTPUT=$(pw-dump | jq -r '.[] | select(.info.props."media.class"=="Audio/Sink") | "\(.id)\t\(.info.props."node.description")"' | rofi -dmenu -display-columns 2 -p "Select Audio Output" -location 2 | sed -e 's/[^0-9]*\([0-9]*\).*/\1/g')
+	if ! [[ -z "$NEW_OUTPUT" ]]; then
+		wpctl set-default "$NEW_OUTPUT"
+	fi
+}
+
+case $BLOCK_BUTTON in
+	1) select_output ;;
+	2) wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle ;;
+	4) wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+ ;;
+	5) wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%- ;;
+	3) notify-send "📢 Volume module" "\- Shows volume 🔊, 🔇 if muted.
+- Middle click to mute.
+- Scroll to change." ;;
+	6) setsid -f "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+
+# If muted, print 🔇 and exit.
+[ "$vol" != "${vol%\[MUTED\]}" ] && echo 🔇 && exit
+
+vol="${vol#Volume: }"
+
+split() {
+	# For ommiting the . without calling and external program.
+	IFS=$2
+	set -- $1
+	printf '%s' "$@"
+}
+
+vol="$(printf "%.0f" "$(split "$vol" ".")")"
+
+case 1 in
+	$((vol >= 70)) ) icon="🔊" ;;
+	$((vol >= 30)) ) icon="🔉" ;;
+	$((vol >= 1)) ) icon="🔈" ;;
+	* ) echo 🔇 && exit ;;
+esac
+
+echo "$icon$vol%"
