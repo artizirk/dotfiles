@@ -98,14 +98,14 @@ function config {
 # git based dotfiles setup end
 
 # GRML profiles
-zstyle ':chpwd:profiles:/home/arti/code/krakul(|/|/*)' profile krakul
-function chpwd_profile_krakul() {
+zstyle ':chpwd:profiles:/home/arti/code/messente(|/|/*)' profile messente
+function chpwd_profile_messente() {
     [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
 
-    export GIT_AUTHOR_EMAIL="arti@krakul.eu"
-    export GIT_COMMITTER_EMAIL="arti@krakul.eu"
+    export GIT_AUTHOR_EMAIL="arti.zirk@messente.com"
+    export GIT_COMMITTER_EMAIL="arti.zirk@messente.com"
 }
-function chpwd_leave_profile_krakul() {
+function chpwd_leave_profile_messente() {
     [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
 
     unset GIT_AUTHOR_EMAIL \
@@ -121,11 +121,11 @@ zstyle ':completion:*:*:git:*' user-commands subrepo:'perform git-subrepo operat
 # First clear grml-zsh-config provided directory hashes
 hash -d -r
 # shorten dir name in prompt
-hash -d krakul=~/code/krakul
+hash -d messente=~/code/messente
 function hash_projects() {
-    # hash everything under krakul projects
+    # hash everything under messente projects
     local project_folder
-    for project_folder in ~/code/krakul/*; do
+    for project_folder in ~/code/messente/*; do
         hash -d "${project_folder:t}"="${project_folder}"
     done
     unset project_folder
