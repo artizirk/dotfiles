@@ -358,6 +358,10 @@ input 1267:32:Elan_TrackPoint {
     accel_profile "flat"
 }
 
+input 1267:12693:ELAN0676:00_04F3:3195_Touchpad {
+    natural_scroll enabled
+}
+
 input 1133:16534:Logitech_ERGO_M575 {
 	pointer_accel 0.5
 	scroll_method on_button_down
