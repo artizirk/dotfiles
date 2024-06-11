@@ -365,4 +365,5 @@ input 1133:16534:Logitech_ERGO_M575 {
 }
 
 include /etc/sway/config.d/*
+exec systemctl --user set-environment XDG_CURRENT_DESKTOP=sway
 include autostart
