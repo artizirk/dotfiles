@@ -53,7 +53,7 @@ exec xrdb -load ~/.Xresources
 exec mako
 
 # Volume and Brightness notification
-exec tvolnoti -n  -T dark
+exec swayosd-server
 
 # Monitor volume changes
 exec ~/.bin/volume_subscribe.sh
@@ -75,7 +75,8 @@ exec card_eventmgr config_file=.config/pam_pkcs11/card_eventmgr.conf
 exec swayidle \
     timeout 300 '$lockcmd' \
     timeout 600 'swaymsg "output * dpms off"' \
-       resume 'swaymsg "output * dpms on"' \
+    resume 'swaymsg "output * dpms on"' \
+    after-resume 'swaymsg "output * enable"' \
     before-sleep '$lockcmd' \
     lock '$lockcmd' \
     unlock 'pkill -9 swaylock'
@@ -261,8 +262,8 @@ bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 #brightness control
-bindsym XF86MonBrightnessUp exec brightnessctl -m set +5% | cut -d',' -f4 | cut -d'%' -f1 | xargs -n1 tvolnoti-show -s ~/.config/tvolnoti/themes/dark/display_brightness.svg
-bindsym XF86MonBrightnessDown exec brightnessctl -m set 5%- | cut -d',' -f4 | cut -d'%' -f1 | xargs -n1 tvolnoti-show -s ~/.config/tvolnoti/themes/dark/display_brightness.svg
+bindsym XF86MonBrightnessUp exec swayosd-client --brightness=+5
+bindsym XF86MonBrightnessDown exec swayosd-client --brightness=-5
 
 # Authy 2FA window
 for_window [title="^Authy$"] floating enable
@@ -299,6 +300,7 @@ for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 
 for_window [title="Slack \| mini panel"] move scratchpad
 for_window [class="Simplicity Studio™" title="Find\/Replace "] floating enable
 for_window [app_id="gnome-calculator"] floating enable
+for_window [class="drata-agent"] move absolute position 2160 px 0 px
 
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py
