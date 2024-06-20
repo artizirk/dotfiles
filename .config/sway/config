@@ -96,9 +96,8 @@ bindsym Scroll_Lock exec $lockcmd
 # Alt+Tab window switcher
 bindsym Alt+Tab exec ~/.bin/switch_window.py
 
-# ClickUp Time Tracker util
-bindsym $mod+c exec foot --app-id=cucli --title=cucli --window-size-chars=200x40 --working-directory=/home/arti/code/krakul/internal/cucli /home/arti/code/krakul/internal/cucli/venv/bin/cucli
-for_window [app_id="cucli"] floating enable
+bindsym $mod+p exec tessen
+
 
 # Hack that adds a emoji to all window titles so that title height is somewhat constant
 # You can read mode about this here https://github.com/swaywm/sway/issues/3114
@@ -308,7 +307,7 @@ bindsym Print+Shift exec ~/.bin/wscreenshot.py --region
 bindsym Print+Alt exec ~/.bin/wscreenshot.py --window
 
 # media keys
-bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
