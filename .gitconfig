@@ -4,6 +4,7 @@
 [merge]
 	tool = meld
 	conflictStyle = zdiff3
+	keepbackup = false
 
 [alias]
 	plog = log --graph --pretty=format:'%h -%d %s %n' --abbrev-commit --date=relative --branches
@@ -27,6 +28,7 @@
 	smtpServerPort = 587
 [diff]
 	wsErrorHighlight = all
+	algorithm = histogram
 [cola]
 	spellcheck = false
 [push]
@@ -58,3 +60,9 @@
 	allow = always
 [column]
 	ui = auto
+[rebase]
+	autosquash = true
+[branch]
+	sort = -committerdate
+[fetch]
+	prune = true
