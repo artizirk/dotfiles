@@ -251,18 +251,26 @@ else
     ruby_gem_user_dir=''
 fi
 
+# kubectl plugin manager Krew
+export KREW_ROOT="~/.config/krew"
+if [[ -d "${KREW_ROOT}/bin" ]]; then
+    krew_bin_path="${KREW_ROOT}/bin"
+else
+    krew_bin_path=''
+fi
+
+
 # ZSH allows $PATH to be used as an array
 path=(
     ~/.bin
     ~/.local/bin
+    ${ruby_gem_user_dir}
+    ${krew_bin_path}
     /usr/bin/site_perl
     /usr/bin/vendor_perl
     /usr/bin/core_perl
-    "${ruby_gem_user_dir}"
     $path
 )
-
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 HISTSIZE=100000
 SAVEHIST=100000
