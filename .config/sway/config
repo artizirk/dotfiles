@@ -299,7 +299,6 @@ for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 
 for_window [title="Slack \| mini panel"] move scratchpad
 for_window [class="Simplicity Studio™" title="Find\/Replace "] floating enable
 for_window [app_id="gnome-calculator"] floating enable
-for_window [class="drata-agent"] move absolute position 2160 px 0 px
 
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py
