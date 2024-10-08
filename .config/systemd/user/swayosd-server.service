@@ -1,0 +1,11 @@
+[Unit]
+Description=SwayOSD Server
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swayosd-server
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=default.target
