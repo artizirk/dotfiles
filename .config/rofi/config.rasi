@@ -1,4 +1,5 @@
 configuration {
 	font: "Terminus 12";
+	run-command: "bash -c 'systemd-run --user --unit=app-rofi-\$(systemd-escape \"{cmd}\")-\$RANDOM {cmd}'";
 }
 @theme "/usr/share/rofi/themes/android_notification.rasi"

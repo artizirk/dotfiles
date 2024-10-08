@@ -53,7 +53,7 @@ exec xrdb -load ~/.Xresources
 exec mako
 
 # Volume and Brightness notification
-exec swayosd-server
+#exec swayosd-server  # started via systemd for Restart=always
 
 # Monitor volume changes
 exec ~/.bin/volume_subscribe.sh
@@ -87,9 +87,6 @@ for_window [class="Firefox"] inhibit_idle fullscreen
 # wayland vesion
 for_window [app_id="firefox"] inhibit_idle fullscreen
 
-# Start autotiling script
-#exec autotiling
-
 # Lock screen with scroll lock button
 bindsym Scroll_Lock exec $lockcmd
 
@@ -97,7 +94,6 @@ bindsym Scroll_Lock exec $lockcmd
 bindsym Alt+Tab exec ~/.bin/switch_window.py
 
 bindsym $mod+p exec tessen
-
 
 # Hack that adds a emoji to all window titles so that title height is somewhat constant
 # You can read mode about this here https://github.com/swaywm/sway/issues/3114
@@ -299,6 +295,7 @@ for_window [title="Microsoft Teams Notification"] move absolute position 0 px 0 
 for_window [title="Slack \| mini panel"] move scratchpad
 for_window [class="Simplicity Studio™" title="Find\/Replace "] floating enable
 for_window [app_id="gnome-calculator"] floating enable
+for_window [class="drata-agent"] move absolute position 2160 px 0 px
 
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py
@@ -306,7 +303,7 @@ bindsym Print+Shift exec ~/.bin/wscreenshot.py --region
 bindsym Print+Alt exec ~/.bin/wscreenshot.py --window
 
 # media keys
-bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
