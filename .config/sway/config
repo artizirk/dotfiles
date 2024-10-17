@@ -273,9 +273,8 @@ for_window [class="Rofi"] floating enable
 for_window [instance="Browser" window_role="About"] floating enable
 for_window [title="Firefox - Jagamise indikaator"] floating enable
 
-# Work TK app
-for_window [title="Device Programmer"] floating enable
-for_window [app_id="eu.krakul.SportScientiaTool"] floating enable
+# Evolution Alarms window
+for_window [app_id="evolution-alarm-notify"] floating enable
 
 
 # JetBrains
