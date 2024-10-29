@@ -5,11 +5,8 @@ zmodload zsh/pcre
 
 # Virtualenv support
 function _virtual_env_prompt () {
-    # new pyvenv has a seperate variable for custom prompt value
-    REPLY=${VIRTUAL_ENV_PROMPT+${VIRTUAL_ENV_PROMPT}}
-
     # Try to read the prompt name form pyvenv.cfg
-    if [[ -z "${REPLY}" && -f "$VIRTUAL_ENV/pyvenv.cfg" ]]; then
+    if [[ -f "$VIRTUAL_ENV/pyvenv.cfg" ]]; then
 	# Matches lines with following syntax
 	# prompt = 'cool prompt'
 	# prompt = "cool prompt"
@@ -32,7 +29,7 @@ function _virtual_env_prompt () {
 	fi
     fi
 
-    # support old-school virtualenv
+    # fall back to using venv folder name as prompt name
     if [[ -z "${REPLY}" ]]; then
         REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
     fi
