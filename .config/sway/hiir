@@ -2,8 +2,12 @@
 
 set $left_disp "Dell Inc. DELL U2724DE C9YPBP3"
 set $right_disp "Dell Inc. DELL U2724D J3XFCP3"
+
 #set $left_disp "Dell Inc. DELL S2721DGF 8SVBP83"
+output "Dell Inc. DELL S2721DGF 8SVBP83" pos 0 0
 #set $right_disp "Dell Inc. DELL U2715H GH85D66Q08QS"
+output "Dell Inc. DELL U2715H GH85D66Q08QS" pos 2560 0
+
 set $chat_workspace 10
 
 output $left_disp pos 0 0
