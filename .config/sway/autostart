@@ -10,6 +10,7 @@ for_window [app_id="quasselclient"] move to workspace $chat_workspace
 exec systemd-run --user --unit=quasselclient /usr/bin/quasselclient
 
 for_window [class="Element"] move to workspace $chat_workspace
+for_window [app_id="Element"] move to workspace $chat_workspace
 exec systemd-run --user --unit=element-desktop  /usr/bin/element-desktop
 
 for_window [class="Slack"] move to workspace $chat_workspace
