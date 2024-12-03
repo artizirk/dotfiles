@@ -1,0 +1,113 @@
+#!/bin/bash
+set -euo pipefail
+
+DEFAULT_SUITE="bookworm"
+BASE="/var/lib/machines"
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
+function show_help {
+    cat <<-EOF
+Usage: $0 -h | -n NAME [-s SUITE] [-d]
+
+Create a nspanw container called NAME
+
+-h      help
+-n      container name
+-s      debian suite (default: ${DEFAULT_SUITE})
+-d      delete container
+EOF
+}
+
+while getopts 'hn:s:d' flag; do
+  case "${flag}" in
+    h) show_help; exit 0;;
+    n) name="${OPTARG}" ;;
+    s) suite="${OPTARG}" ;;
+    d) delete=1 ;;
+    *) echo "Unexpected option ${flag}" ;;
+  esac
+done
+
+SUITE=${suite:-$DEFAULT_SUITE}
+
+if [[ -z ${name:-} ]]; then
+    echo "Container name is unset"
+    echo
+    show_help
+    exit;
+else
+    echo "Container name is $name and suite is ${SUITE}"
+fi
+
+if [[ -n ${delete:-} ]]; then
+   btrfs subvolume delete "${BASE}/$name"
+   exit 0
+fi
+
+btrfs subvolume create "${BASE}/${name}"
+
+APT_CACHE_DIR="/var/cache/apt/archives"
+
+if [[ -d ${APT_CACHE_DIR} ]]; then
+    CACHE_ARGS="--cache-dir=${APT_CACHE_DIR}"
+else
+    CACHE_ARGS=""
+fi
+
+debootstrap ${CACHE_ARGS} "${SUITE}" "${BASE}/${name}"
+
+mkdir -p "$BASE/$name/root/.ssh"
+chmod 700 "$BASE/$name/root/.ssh"
+if [ -f "/root/.ssh/authorized_keys" ]; then
+	cp -v /root/.ssh/authorized_keys "$BASE/$name/root/.ssh/authorized_keys"
+	chmod 600 "$BASE/$name/root/.ssh/authorized_keys"
+	echo "added ssh keys to root"
+fi
+
+if [[ -e "$BASE/$name/etc/resolv.conf" ]]; then
+    rm "$BASE/$name/etc/resolv.conf"
+fi
+
+if [[ -e "$BASE/$name/etc/hostname" ]]; then
+    rm "$BASE/$name/etc/hostname"
+fi
+
+systemd-nspawn --console=pipe -D "$BASE/$name" /bin/bash <<'EOF'
+echo "Now running inside nspawn $(pwd)"
+
+source /etc/os-release
+
+if [[ "$ID" == "ubuntu" ]]; then
+    sed -i '1 s/$/ restricted universe multiverse/' /etc/apt/sources.list
+elif [[ "$ID" == "debian" ]]; then
+    if [[ $VERSION_ID -le 11 ]]; then
+        sed -i '1 s/$/ contrib non-free/' /etc/apt/sources.list
+    else
+        sed -i '1 s/$/ contrib non-free non-free-firmware/' /etc/apt/sources.list
+    fi
+fi
+
+apt-get update
+apt-get install --yes --no-install-recommends locales dbus ssh python3
+
+echo "locales locales/default_environment_locale select en_US.UTF-8" | debconf-set-selections
+echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8, et_EE.UTF-8 UTF-8" | debconf-set-selections
+rm /etc/locale.gen
+dpkg-reconfigure --frontend noninteractive locales
+ln -fs /usr/share/zoneinfo/Europe/Tallinn /etc/localtime
+dpkg-reconfigure -f noninteractive tzdata
+
+apt install --yes --no-install-recommends neovim
+update-alternatives --set editor /usr/bin/nvim
+ln -sf /usr/share/nvim/runtime/macros/less.sh /usr/local/bin/vless
+
+# Use systemd-resovled directly by configuring /etc/nsswitch.conf
+apt install --yes --no-install-recommends libnss-resolve
+
+systemctl enable systemd-networkd
+systemctl enable systemd-resolved
+EOF
