@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-udo sed -i -e 's#Exec=/usr/bin/slack %U#Exec=/usr/bin/slack\ %U\ --enable-features=WebRTCPipeWireCapturer#' /usr/share/applications/slack.desktop
+sudo sed -i -e 's#^Exec=/usr/bin/slack -s %U$#Exec=/usr/bin/slack\ -s\ %U --enable-features=WebRTCPipeWireCapturer,UseOzonePlatform --ozone-platform=wayland#' /usr/share/applications/slack.desktop
