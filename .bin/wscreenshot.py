@@ -1,4 +1,18 @@
 #!/usr/bin/env python3
+"""
+Sway screenshot tool. Saved screenshots are also added to GTK recents list for easy access.
+
+Uses following tools
+* grim
+* slurp
+* https://codeberg.org/vyivel/dulcepan
+* jq
+
+
+Region selection uses dulcepan. It works by first freezing the screen so that popups sway visible.
+Then it allows selection of the region you want to screenshot.
+"""
+
 import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk, GLib
@@ -28,16 +42,7 @@ else:
         sys.exit(0)
 
     elif sys.argv[1] == '--region':
-        outputs = run(['swaymsg', '-t', 'get_outputs'], check=True, capture_output=True)
-        for output in json.loads(outputs.stdout):
-            if not output.get("focused"):
-                continue
-            image = Popen(["grim", "-o", f"{output.get('name')}", '-'], stdout=PIPE)
-            viewer = Popen(['swayimg', '-f', '-o', f'{output.get("name")}','-'], stdin=image.stdout)
-            image_viewers.append(viewer)
-
-        region = run('slurp', check=True, capture_output=True)
-        run(["grim", '-g', '-', file_name], check=True, input=region.stdout)
+        run(["dulcepan", "-C", "-o", file_name], check=True)
 
     elif sys.argv[1] == '--window':
         tree = run(['swaymsg', '-t', 'get_tree'], check=True, capture_output=True)
