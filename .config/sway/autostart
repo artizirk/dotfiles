@@ -21,7 +21,3 @@ exec systemd-run --user --unit=slack-flatpak /usr/bin/flatpak run com.slack.Slac
 for_window [app_id="telegramdesktop"] move to workspace $chat_workspace
 for_window [app_id="org.telegram.desktop"] move to workspace $chat_workspace
 exec systemd-run --user --unit=telegram /usr/bin/env XDG_CURRENT_DESKTOP=GNOME telegram-desktop
-
-for_window [class="drata-agent"] move absolute position 2160 px 0 px
-for_window [app_id="drata-agent"] move absolute position 2160 px 0 px
-exec systemd-run --user --unit=drata-agent /usr/bin/drata-agent
