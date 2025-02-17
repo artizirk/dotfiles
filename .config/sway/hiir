@@ -15,7 +15,7 @@ output $left_disp mode 2560x1440@120.000Hz
 output $right_disp pos 2560 0
 output $right_disp mode 2560x1440@120.000Hz
 
-set $laptop "LG Display 0x06ED Unknown"
+set $laptop eDP-1
 bindswitch lid:on output $laptop disable
 bindswitch lid:off output $laptop enable
 
