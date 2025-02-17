@@ -42,7 +42,7 @@ else:
         sys.exit(0)
 
     elif sys.argv[1] == '--region':
-        run(["dulcepan", "-C", "-o", file_name], check=True)
+        run(["dulcepan", "-o", file_name], check=True)
 
     elif sys.argv[1] == '--window':
         tree = run(['swaymsg', '-t', 'get_tree'], check=True, capture_output=True)
