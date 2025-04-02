@@ -1,0 +1,3 @@
+#!/bin/bash
+
+systemd-inhibit --what=sleep:idle --mode=block bash -c 'while true; do sleep 1; done'
