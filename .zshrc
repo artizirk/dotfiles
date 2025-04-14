@@ -319,6 +319,8 @@ function ssh {
 
 # i don't like that systemd by default uses a pager
 export SYSTEMD_PAGER=''
+# Minio CLI is also stupid
+export MC_DISABLE_PAGER=1
 
 # set man max width
 export MANWIDTH=80
