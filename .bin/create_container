@@ -11,22 +11,26 @@ fi
 
 function show_help {
     cat <<-EOF
-Usage: $0 -h | -n NAME [-s SUITE] [-d]
+Usage: $0 -h | -n NAME [-s SUITE] [-t [SNAPSHOT_NAME] -r] [-d]
 
 Create a nspanw container called NAME
 
 -h      help
 -n      container name
 -s      debian suite (default: ${DEFAULT_SUITE})
+-t      snapshot container
+-r      rollback to snapshot
 -d      delete container
 EOF
 }
 
-while getopts 'hn:s:d' flag; do
+while getopts 'hn:s:t:rd' flag; do
   case "${flag}" in
     h) show_help; exit 0;;
     n) name="${OPTARG}" ;;
     s) suite="${OPTARG}" ;;
+    t) snapshot="${OPTARG}" ;;
+    r) rollback=1 ;;
     d) delete=1 ;;
     *) echo "Unexpected option ${flag}" ;;
   esac
@@ -43,9 +47,26 @@ else
     echo "Container name is $name and suite is ${SUITE}"
 fi
 
+if [[ -n ${snapshot:-} ]]; then
+    dest_snapshot_name="${BASE}/.${name}_${snapshot}"
+    if [[ -n ${rollback:-} ]]; then
+        if [[ -d ${dest_snapshot_name} ]]; then
+            btrfs subvolume delete "${BASE}/${name}"
+            btrfs subvolume snapshot "${dest_snapshot_name}" "${BASE}/${name}"
+            exit 0
+        else
+            echo "Can't rollback as '${snapshot}' does not exist"
+            exit 1
+        fi
+    else
+        btrfs subvolume snapshot -r "${BASE}/${name}" "${dest_snapshot_name}"
+        exit 0
+    fi
+fi
+
 if [[ -n ${delete:-} ]]; then
-   btrfs subvolume delete "${BASE}/$name"
-   exit 0
+    btrfs subvolume delete "${BASE}/${name}" "${BASE}/.${name}_"*
+    exit 0
 fi
 
 btrfs subvolume create "${BASE}/${name}"
@@ -92,7 +113,7 @@ elif [[ "$ID" == "debian" ]]; then
 fi
 
 apt-get update
-apt-get install --yes --no-install-recommends locales dbus ssh python3
+apt-get install --yes --no-install-recommends locales dbus ssh python3 libnss-resolve
 
 echo "locales locales/default_environment_locale select en_US.UTF-8" | debconf-set-selections
 echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8, et_EE.UTF-8 UTF-8" | debconf-set-selections
@@ -105,9 +126,8 @@ apt install --yes --no-install-recommends neovim
 update-alternatives --set editor /usr/bin/nvim
 ln -sf /usr/share/nvim/runtime/macros/less.sh /usr/local/bin/vless
 
-# Use systemd-resovled directly by configuring /etc/nsswitch.conf
-apt install --yes --no-install-recommends libnss-resolve
 
 systemctl enable systemd-networkd
+# Needed by libnss-resolve config in /etc/nsswitch.conf
 systemctl enable systemd-resolved
 EOF
