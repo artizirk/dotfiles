@@ -335,7 +335,7 @@ fi
 
 # https://neovim.io/doc/user/various.html#less
 function vless {
-    /usr/share/nvim/runtime/macros/less.sh $@
+    /usr/share/nvim/runtime/scripts/less.sh $@
 }
 
 # If running under windows with pageagent then use it
