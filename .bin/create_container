@@ -113,7 +113,7 @@ elif [[ "$ID" == "debian" ]]; then
 fi
 
 apt-get update
-apt-get install --yes --no-install-recommends locales dbus ssh python3 libnss-resolve
+apt-get install --yes --no-install-recommends locales dbus ssh python3
 
 echo "locales locales/default_environment_locale select en_US.UTF-8" | debconf-set-selections
 echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8, et_EE.UTF-8 UTF-8" | debconf-set-selections
@@ -128,6 +128,9 @@ ln -sf /usr/share/nvim/runtime/macros/less.sh /usr/local/bin/vless
 
 
 systemctl enable systemd-networkd
+
+# systemd-resolved package also replaces /etc/resolv.conf with a symlink that breaks DNS in our current pre setup environment
+apt install --yes --no-install-recommends libnss-resolve
 # Needed by libnss-resolve config in /etc/nsswitch.conf
 systemctl enable systemd-resolved
 EOF
