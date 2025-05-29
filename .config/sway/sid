@@ -5,5 +5,10 @@ exec /usr/bin/swaynag-battery --threshold 5
 #set $right_disp "Unknown 0x0791 0x00000000"
 set $chat_workspace 10
 
+
+set $laptop eDP-1
+bindswitch lid:on output $laptop disable
+bindswitch lid:off output $laptop enable
+
 output $left_disp pos 0 0
 output $right_disp pos 370 1440
