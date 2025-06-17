@@ -20,4 +20,7 @@ exec systemd-run --user --unit=slack-flatpak /usr/bin/flatpak run com.slack.Slac
 
 for_window [app_id="telegramdesktop"] move to workspace $chat_workspace
 for_window [app_id="org.telegram.desktop"] move to workspace $chat_workspace
-exec systemd-run --user --unit=telegram /usr/bin/env XDG_CURRENT_DESKTOP=GNOME telegram-desktop
+exec systemd-run --user --unit=telegram /usr/bin/env XDG_CURRENT_DESKTOP=GNOME Telegram
+
+# for earlyoom notifications
+exec systemd-run --user --unit=systembus-notify /usr/bin/systembus-notify
