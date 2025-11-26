@@ -1,1 +1,2 @@
 \setenv LESS '-iMFXSx4R'
+\set PROMPT1 '%n@%//%s%R%# '
