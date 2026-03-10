@@ -295,6 +295,7 @@ for_window [title="Slack \| mini panel"] move scratchpad
 for_window [class="Simplicity Studio™" title="Find\/Replace "] floating enable
 for_window [app_id="gnome-calculator"] floating enable
 for_window [class="drata-agent"] move absolute position 2160 px 0 px
+for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 
 # screenshots
 bindsym Print exec ~/.bin/wscreenshot.py

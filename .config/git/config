@@ -50,6 +50,7 @@
 	ui = auto
 [core]
 	abbrev = 12
+	autocrlf = input
 [pretty]
 	fixes = Fixes: %h (\"%s\")
 [tag]
