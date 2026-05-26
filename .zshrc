@@ -95,14 +95,14 @@ function config {
 # git based dotfiles setup end
 
 # GRML profiles
-zstyle ':chpwd:profiles:/home/arti/code/messente(|/|/*)' profile messente
-function chpwd_profile_messente() {
+zstyle ':chpwd:profiles:/home/arti/code/sensusq(|/|/*)' profile sensusq
+function chpwd_profile_sensusq() {
     [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
 
-    export GIT_AUTHOR_EMAIL="arti.zirk@messente.com"
-    export GIT_COMMITTER_EMAIL="arti.zirk@messente.com"
+    export GIT_AUTHOR_EMAIL="arti.zirk@sensusq.com"
+    export GIT_COMMITTER_EMAIL="arti.zirk@sensusq.com"
 }
-function chpwd_leave_profile_messente() {
+function chpwd_leave_profile_sensusq() {
     [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
 
     unset GIT_AUTHOR_EMAIL \
@@ -118,11 +118,11 @@ zstyle ':completion:*:*:git:*' user-commands subrepo:'perform git-subrepo operat
 # First clear grml-zsh-config provided directory hashes
 hash -d -r
 # shorten dir name in prompt
-hash -d messente=~/code/messente
+hash -d sensusq=~/code/sensusq
 function hash_projects() {
-    # hash everything under messente projects
+    # hash everything under work projects
     local project_folder
-    for project_folder in ~/code/messente/*; do
+    for project_folder in ~/code/sensusq/*; do
         hash -d "${project_folder:t}"="${project_folder}"
     done
     unset project_folder
@@ -329,7 +329,11 @@ fi
 
 # https://neovim.io/doc/user/various.html#less
 function vless {
-    /usr/share/nvim/runtime/scripts/less.sh $@
+    if [[ -e /usr/share/nvim/runtime/macros/less.sh ]]; then
+        /usr/share/nvim/runtime/macros/less.sh $@
+    else;
+        /usr/share/nvim/runtime/scripts/less.sh $@
+    fi
 }
 
 # If running under windows with pageagent then use it

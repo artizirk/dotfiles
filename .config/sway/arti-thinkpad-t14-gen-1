@@ -1,20 +1,18 @@
 # Work computer
 exec /usr/bin/swaynag-battery --threshold 5
 
-set $left_disp "Dell Inc. DELL U2724DE C9YPBP3"
-set $right_disp "Dell Inc. DELL U2724D J3XFCP3"
+set $left_disp "Dell Inc. DELL P2723DE HXD80N3"
+set $right_disp "Dell Inc. DELL P2723DE G1330N3"
 
-#set $left_disp "Dell Inc. DELL S2721DGF 8SVBP83"
 output "Dell Inc. DELL S2721DGF 8SVBP83" pos 0 0
-#set $right_disp "Dell Inc. DELL U2715H GH85D66Q08QS"
 output "Dell Inc. DELL U2715H GH85D66Q08QS" pos 2560 0
 
 set $chat_workspace 10
 
 output $left_disp pos 0 0
-output $left_disp mode 2560x1440@120.000Hz
+output $left_disp mode 2560x1440@60.000Hz
 output $right_disp pos 2560 0
-output $right_disp mode 2560x1440@120.000Hz
+output $right_disp mode 2560x1440@60.000Hz
 
 set $laptop eDP-1
 bindswitch lid:on output $laptop disable
