@@ -65,5 +65,5 @@
 	sort = -committerdate
 [fetch]
 	prune = true
-[includeIf "gitdir:~/code/messente/"]
-       path = ~/code/messente/gitconfig
+[includeIf "gitdir:~/code/sensusq/"]
+       path = ~/code/sensusq/gitconfig
