@@ -306,7 +306,7 @@ function npm {
     (
     export COLOR=1
     export REACT_APP_NO_CLEAR_CONSOLE=1
-    exec /usr/bin/npm $@ | cat
+    exec command npm $@ | cat
     )
 }
 
