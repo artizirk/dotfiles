@@ -331,6 +331,9 @@ export MANWIDTH=80
 # make npm gyp faster
 export JOBS=8
 
+# Disable fzf in kubectx and kubens
+export KUBECTX_IGNORE_FZF=1
+
 # under tmux less needs this to support scrolling
 if [[ "$TERM" == "" ]]; then
     export LESS='--mouse --wheel-lines=3'
