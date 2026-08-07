@@ -272,6 +272,15 @@ setopt INC_APPEND_HISTORY_TIME
 # by default show 3 months of calendar with week number
 # but also allow to override it
 function cal {
+    local BSDCALENDAR=$(which -p ncal)
+    if [[ $# -eq 0 ]]; then
+        $BSDCALENDAR -3b
+        return
+    else
+        $BSDCALENDAR -b "$@"
+        return
+    fi
+
     local CALENDAR=$(which -p cal)
     if [[ $# -eq 0 ]]; then
         $CALENDAR -m -w3
