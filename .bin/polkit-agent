@@ -1,4 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-#/usr/lib/mate-polkit/polkit-mate-authentication-agent-1
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+for agent in \
+	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 \
+	/usr/lib/mate-polkit/polkit-mate-authentication-agent-1 \
+	/usr/libexec/polkit-mate-authentication-agent-1
+do
+	if [[ -x "$agent" ]]; then
+		exec $agent
+	fi
+done
