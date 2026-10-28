@@ -24,7 +24,7 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
+#command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
@@ -79,17 +79,15 @@ interval=30
 # If the instance is not specified, use the interface used for default route.
 # The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
+command=~/.config/i3blocks/iface
 #instance=wlan0
+display_wifi_name=1
 color=#00FF00
 interval=10
 separator=false
 
-[wifi]
-#instance=wlp3s0
-interval=10
-separator=false
-
 [bandwidth]
+command=~/.config/i3blocks/bandwith
 #instance=eth0
 interval=5
 
