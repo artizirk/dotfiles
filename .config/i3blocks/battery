@@ -6,7 +6,7 @@ print_dev_status() {
 	status=$(busctl get-property org.freedesktop.UPower $dev_path org.freedesktop.UPower.Device State | cut -d' ' -f2)
 	charge_f=$(busctl get-property org.freedesktop.UPower $dev_path org.freedesktop.UPower.Device Percentage | cut -d' ' -f2)
 
-	echo -e "$charge_f %"
+	printf '%s%% ' "$charge_f"
 }
 
 print_dev_status '/org/freedesktop/UPower/devices/DisplayDevice'
@@ -25,15 +25,18 @@ print_dev_status '/org/freedesktop/UPower/devices/DisplayDevice'
 
 #printf '  '
 
-#if [[ "$status" == '1' ]]; then
-#    printf '\uf106'
-#elif [[ "$status" == '2' ]]; then
-#    printf '\uf107'
-#elif [[ "$status" == '4' ]]; then
-#    printf '\uf0e7'
-#else
-#    printf '[%s]' "$status"
-#fi
+if [[ "$status" == '1' ]]; then
+    printf '\uf106'
+elif [[ "$status" == '2' ]]; then
+    printf '\uf107'
+elif [[ "$status" == '4' ]]; then
+    printf '\uf0e7'
+elif [[ "$status" == '5' ]]; then
+    printf '\uf1e6'
+else
+    printf '[%s]' "$status"
+fi
+echo
 
 #printf '  '
 
