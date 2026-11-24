@@ -6,3 +6,8 @@
 
 # so that i can autoload -Uz local functions
 fpath=( ~/.config/zsh/functions $fpath)
+
+# https://github.com/wbingli/zsh-claudecode-completion
+if [[ -e ~/.config/zsh/zsh-claudecode-completion/_claude ]]; then
+	fpath=(~/.config/zsh/zsh-claudecode-completion $fpath)
+fi
