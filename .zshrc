@@ -94,22 +94,6 @@ function config {
 }
 # git based dotfiles setup end
 
-# GRML profiles
-zstyle ':chpwd:profiles:/home/arti/code/sensusq(|/|/*)' profile sensusq
-function chpwd_profile_sensusq() {
-    [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
-
-    export GIT_AUTHOR_EMAIL="arti.zirk@sensusq.com"
-    export GIT_COMMITTER_EMAIL="arti.zirk@sensusq.com"
-}
-function chpwd_leave_profile_sensusq() {
-    [[ ${profile} == ${CHPWD_PROFILE} ]] && return 1
-
-    unset GIT_AUTHOR_EMAIL \
-        GIT_COMMITTER_EMAIL
-}
-chpwd_profiles
-
 
 # for some reason zsh does not pick up git-subrepo custom command
 # I have to add it manually to git completion
